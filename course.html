@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="Цифровой образовательный ресурс «Игровые основы программирования» — интерактивный курс для школьников 5–8 классов. Автор: Савчишен А.А.">
+<meta name="theme-color" content="#080b16">
+<meta name="author" content="Савчишен Алексей Алексеевич">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://xn--n1aeq.online/course.html">
+<meta property="og:title" content="Игровые основы программирования — ЦОР для школьников">
+<meta property="og:description" content="Интерактивный курс: алгоритмы, переменные, условия и циклы в игровой форме. Видеолекции, инфографика, тренажёры и тесты.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="Игровые основы программирования — ЦОР">
+<meta property="og:url" content="https://xn--n1aeq.online/course.html">
+<meta property="og:image" content="https://xn--n1aeq.online/assets/img/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Игровые основы программирования — интерактивный курс">
+<meta name="twitter:description" content="Алгоритмы, переменные, условия и циклы в игровой форме для школьников 5–8 классов.">
+<meta name="twitter:image" content="https://xn--n1aeq.online/assets/img/og-image.png">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<title>Игровые основы программирования — ЦОР</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Unbounded:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/course.css">
+<noscript><style>.reveal{opacity:1!important;transform:none!important}.nav-links{position:static!important;opacity:1!important;transform:none!important;pointer-events:auto!important}</style></noscript>
+</head>
+<body>
+
+<div class="bg-fx"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand"><span class="logo">&lt;/&gt;</span><span>Игровые основы<br><small>программирования · ЦОР</small></span></a>
+    <div class="nav-links" id="links">
+      <a href="#promo">Промо</a>
+      <a href="#about">О курсе</a>
+      <a href="#program">Программа</a>
+      <a href="#grading">Оценивание</a>
+      <a href="#module">Модуль «Циклы»</a>
+      <a href="index.html" class="ghost">Портфолио ↗</a>
+    </div>
+    <button class="icon-btn" id="themeBtn" aria-label="Сменить тему" title="Светлая / тёмная тема">
+      <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+      <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+    </button>
+    <button class="nav-burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+    <div class="nav-progress" id="navp"></div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow"><span class="pulse"></span> Цифровой образовательный ресурс</span>
+      <h1>Игровые основы <span class="g">программирования</span></h1>
+      <p class="lead">Интерактивный курс для школьников 5–8 классов: алгоритмы, переменные, условия и циклы — шаг за шагом, в игровой форме, с практикой и мгновенной обратной связью.</p>
+      <div class="hero-meta">
+        <span class="chip">🎓 5–8 классы</span>
+        <span class="chip">🗓 6 недель</span>
+        <span class="chip">🧩 6 модулей</span>
+        <span class="chip">🌐 веб-приложение</span>
+      </div>
+      <div class="cta-row">
+        <a href="#module" class="btn btn-primary" data-magnetic>Начать обучение →</a>
+        <a href="#promo" class="btn btn-ghost">▶ Смотреть промо</a>
+      </div>
+    </div>
+    <div class="reveal in" data-d="1">
+      <div class="console" data-spotlight>
+        <div class="console-bar"><i></i><i></i><i></i><span>robot.loop()</span></div>
+        <canvas id="heroCanvas" width="520" height="420" aria-label="Анимация: робот рисует квадрат с помощью цикла"></canvas>
+        <div class="console-cap">↑ это цикл в действии — робот повторяет «вперёд + поворот»</div>
+        <span class="float-sym" style="top:18px;right:24px;font-size:20px">{ }</span>
+        <span class="float-sym" style="bottom:60px;left:18px;font-size:16px;animation-delay:-3s">&lt;/&gt;</span>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="margin-top:2.5rem">
+    <div class="stats reveal">
+      <div class="stat"><div class="v g" data-count="6">0</div><div class="l">недель обучения</div></div>
+      <div class="stat"><div class="v g" data-count="6">0</div><div class="l">модулей курса</div></div>
+      <div class="stat"><div class="v g" data-count="18">0</div><div class="l">часов трудоёмкости</div></div>
+      <div class="stat"><div class="v g" data-count="100" data-suffix="%">0</div><div class="l">в браузере, бесплатно</div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ПРОМО -->
+<section id="promo">
+  <div class="container">
+    <span class="eyebrow reveal">Краткая аннотация</span>
+    <h2 class="sec-title reveal">О чём этот курс <span class="g">за одну минуту</span></h2>
+    <p class="sec-sub reveal">ЦОР «Игровые основы программирования» помогает школьникам 5–8 классов освоить базовые понятия программирования через интерактивные объяснения, игровые задания и практику, а затем применить знания в собственном мини-проекте.</p>
+    <div class="grid g2" style="align-items:start">
+      <div class="video-wrap reveal"><video id="promoVideo" controls preload="metadata" playsinline src="assets/video/video-animation.mp4" aria-label="Промо-ролик курса"></video></div>
+      <div class="card reveal" data-tilt data-d="1">
+        <h3><span class="ic">✨</span> Чем курс отличается</h3>
+        <ul>
+          <li>обучение построено как игра, а не как сухая теория;</li>
+          <li>каждый шаг — короткое объяснение и сразу практика;</li>
+          <li>наглядность: схемы, инфографика, анимация;</li>
+          <li>мгновенная обратная связь и право на ошибку;</li>
+          <li>финал — собственный мини-проект.</li>
+        </ul>
+        <p style="margin-top:.9rem">Доступен и объясняющий ролик: <a href="https://videos.simpleshow.com/2N5cUA6fnU" target="_blank" rel="noopener">версия simpleshow ↗</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- О КУРСЕ -->
+<section id="about">
+  <div class="container">
+    <span class="eyebrow reveal">Полная аннотация</span>
+    <h2 class="sec-title reveal">О курсе</h2>
+    <div class="grid g3">
+      <div class="card reveal" data-tilt><h3><span class="ic">🎯</span> Цель</h3><p>Научить школьников понимать базовые конструкции программирования, решать простые алгоритмические задачи и создавать собственные элементарные решения в интерактивной среде.</p></div>
+      <div class="card reveal" data-tilt data-d="1"><h3><span class="ic">🧪</span> Технологии</h3><ul><li>геймификация и игровые механики;</li><li>интерактивные задания с автопроверкой;</li><li>визуализация и инфографика;</li><li>обучение через создание.</li></ul></div>
+      <div class="card reveal" data-tilt data-d="2"><h3><span class="ic">🏁</span> Результат</h3><p>После курса обучающийся понимает алгоритмы, переменные, условия и циклы, умеет находить ошибки и собирает собственный простой проект.</p></div>
+    </div>
+
+    <h3 class="reveal" style="font-family:var(--fd);font-size:1.4rem;margin:3rem 0 1.2rem">Формат курса</h3>
+    <div class="metrics">
+      <div class="metric reveal"><div class="v">6</div><div class="l">недель</div></div>
+      <div class="metric reveal" data-d="1"><div class="v">6</div><div class="l">модулей</div></div>
+      <div class="metric reveal" data-d="2"><div class="v">2–3 ч</div><div class="l">в неделю</div></div>
+      <div class="metric reveal" data-d="3"><div class="v">16–18 ч</div><div class="l">трудоёмкость</div></div>
+      <div class="metric reveal" data-d="4"><div class="v">1</div><div class="l">мини-проект</div></div>
+    </div>
+    <div class="card tinted reveal" style="margin-top:1.3rem"><h3><span class="ic">📦</span> Что входит в курс</h3>
+      <p>Видеолекции, теоретические мини-блоки, инфографика, интерактивные тренажёры, задания для самостоятельной работы, тесты для самоконтроля и итоговый тест. Уроки по типам: <b style="color:var(--t1)">теория</b> (6), <b style="color:var(--t1)">практика</b> (6), <b style="color:var(--t1)">контроль</b> (6) и итоговый <b style="color:var(--t1)">мини-проект</b> (1).</p></div>
+
+    <h3 class="reveal" id="program" style="font-family:var(--fd);font-size:1.4rem;margin:3rem 0 1.2rem">Структура курса и расписание</h3>
+    <div class="timeline">
+      <div class="tl reveal" data-n="1"><h4>Алгоритм и команда</h4><p>Базовые понятия: алгоритм, команда, исполнитель.</p></div>
+      <div class="tl reveal" data-n="2"><h4>Последовательность действий</h4><p>Линейные алгоритмы и пошаговое выполнение команд.</p></div>
+      <div class="tl reveal" data-n="3"><h4>Переменные</h4><p>Хранение данных и работа с переменными.</p></div>
+      <div class="tl reveal" data-n="4"><h4>Условия</h4><p>Логика выбора и ветвления.</p></div>
+      <div class="tl reveal hot" data-n="5"><h4>Циклы <span class="tl-badge">демо-модуль ниже</span></h4><p>Повторяющиеся действия: циклы со счётчиком и с условием.</p></div>
+      <div class="tl reveal" data-n="6"><h4>Мини-проект</h4><p>Создание собственного простого решения и итоговый тест.</p></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:2.4rem">
+      <div class="card reveal" data-tilt><h3><span class="ic">📚</span> Информационные ресурсы</h3><ul><li>Яндекс Учебник</li><li>Stepik</li><li>CodeBasics</li><li>Урок цифры</li><li>Яндекс Лицей</li><li>Алгоритмика</li></ul></div>
+      <div class="card reveal" data-tilt data-d="1"><h3><span class="ic">🛠</span> Дополнительный инструментарий</h3><ul><li>компьютер, ноутбук или планшет;</li><li>современный браузер;</li><li>доступ в интернет;</li><li>клавиатура и мышь;</li><li>наушники (по желанию).</li></ul><p style="margin-top:.5rem">Всё ПО — бесплатное и работает в браузере.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- РЕЗУЛЬТАТЫ -->
+<section id="outcomes">
+  <div class="container">
+    <span class="eyebrow reveal">Результаты обучения</span>
+    <h2 class="sec-title reveal">Знать · Уметь · <span class="gw">Владеть</span></h2>
+    <div class="grid g3">
+      <div class="card reveal" data-tilt><h3><span class="ic">🧠</span> Знать</h3><ul><li>что такое алгоритм, команда, переменная, условие и цикл;</li><li>принципы построения простого алгоритма;</li><li>типичные ошибки при решении задач.</li></ul></div>
+      <div class="card reveal" data-tilt data-d="1"><h3><span class="ic">⚙️</span> Уметь</h3><ul><li>составлять простые алгоритмы;</li><li>использовать переменные, условия и циклы;</li><li>находить и исправлять ошибки;</li><li>создавать собственный мини-проект.</li></ul></div>
+      <div class="card reveal" data-tilt data-d="2"><h3><span class="ic">🚀</span> Владеть</h3><ul><li>пошаговым решением задач;</li><li>работой в интерактивной среде;</li><li>приёмами самопроверки.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ОЦЕНИВАНИЕ -->
+<section id="grading">
+  <div class="container">
+    <span class="eyebrow reveal">Условия успешного прохождения</span>
+    <h2 class="sec-title reveal">Система оценивания</h2>
+    <p class="sec-sub reveal">Каждый результат обучения связан с заданием и способом проверки — принцип конструктивной согласованности.</p>
+    <div class="tablecard reveal">
+      <table class="t">
+        <thead><tr><th>Компонент</th><th>Что проверяет</th><th>Попытки</th><th>Вес</th></tr></thead>
+        <tbody>
+          <tr><td>Тренажёры</td><td>понимание и применение</td><td>2–3</td><td>30%</td></tr>
+          <tr><td>Тесты модулей</td><td>усвоение теории</td><td>1</td><td>30%</td></tr>
+          <tr><td>Мини-проект</td><td>создание решения</td><td>1</td><td>40%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid g2" style="margin-top:1.4rem">
+      <div class="card reveal" data-tilt><h3><span class="ic">📊</span> Шкала оценивания</h3>
+        <div class="scale"><span style="flex:55;background:#fb7185">&lt;55</span><span style="flex:14;background:#fbbf24">55–69</span><span style="flex:15;background:#22d3ee">70–84</span><span style="flex:16;background:#34d399">85–100</span></div>
+        <ul><li><b style="color:var(--t1)">85–100%</b> — отлично (5)</li><li><b style="color:var(--t1)">70–84%</b> — хорошо (4)</li><li><b style="color:var(--t1)">55–69%</b> — удовлетворительно (3)</li><li><b style="color:var(--t1)">&lt; 55%</b> — не зачтено</li></ul></div>
+      <div class="card reveal" data-tilt data-d="1"><h3><span class="ic">🧮</span> Алгоритм итоговой оценки</h3>
+        <div class="code"><span class="kw">Итог</span> = <span class="num">0.3</span>·тренажёры + <span class="num">0.3</span>·тесты + <span class="num">0.4</span>·мини-проект</div>
+        <p>Баллы переводятся в проценты от максимума и суммируются с весами. Курс пройден при итоге ≥ 55%.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- МОДУЛЬ ЦИКЛЫ -->
+<section id="module">
+  <div class="container">
+    <div class="module-hero reveal">
+      <div class="big-ic">🔁</div>
+      <div style="flex:1;min-width:240px">
+        <span class="eyebrow" style="margin-bottom:.5rem">Учебный модуль · неделя 5</span>
+        <h2>Циклы</h2>
+        <p>Полностью наполненный раздел курса: видеолекция, теория, инфографика, тренажёры, самостоятельная работа и интерактивный итоговый тест.</p>
+      </div>
+    </div>
+
+    <div class="step-tag reveal"><span class="dot">1</span> Видеолекция</div>
+    <div class="video-wrap reveal" style="margin-bottom:.6rem"><video id="lectureVideo" controls preload="none" playsinline src="assets/video/cikly-lecture.mp4" aria-label="Видеолекция Циклы"></video></div>
+    <p class="reveal" style="font-size:13px;color:var(--t3);margin-bottom:2.6rem">Видеолекция записана на основе презентации курса · ≈ 3,5 мин.</p>
+
+    <div class="step-tag reveal"><span class="dot">2</span> Лекция (теоретический материал)</div>
+    <div class="lecture reveal" style="margin-bottom:1.4rem">
+      <h4>Зачем нужны циклы</h4>
+      <p>Представь, что герою игры нужно пройти по дорожке из десяти клеток. Можно написать команду «шаг вперёд» десять раз подряд — но это долго, легко ошибиться и тяжело читать. А если клеток сто? Если действие повторяется, его не переписывают много раз, а заключают в <b style="color:var(--t1)">цикл</b>.</p>
+      <div class="note"><b style="color:var(--t1)">Цикл</b> — команда, которая заставляет компьютер повторять одни и те же действия несколько раз. Повторяющиеся действия — это <b style="color:var(--t1)">тело цикла</b>, а один повтор — <b style="color:var(--t1)">итерация</b>.</div>
+      <h4>Цикл со счётчиком: «повторить N раз»</h4>
+      <p>Самый простой цикл — со счётчиком: мы заранее знаем число повторов. Чтобы герой нарисовал квадрат, нужно четыре раза пройти вперёд и повернуть.</p>
+      <div class="code"><span class="kw">повторить</span> <span class="num">4</span> раза:<br>&nbsp;&nbsp;&nbsp;&nbsp;шаг вперёд<br>&nbsp;&nbsp;&nbsp;&nbsp;поворот направо</div>
+      <p>Тело цикла — две команды, число 4 — счётчик. Вместо восьми строк — три, и алгоритм легко читать.</p>
+    </div>
+
+    <!-- INTERACTIVE DEMO -->
+    <div class="demo reveal">
+      <canvas id="demoCanvas" width="360" height="360" aria-label="Демонстрация цикла: робот рисует квадрат"></canvas>
+      <div>
+        <div class="demo-code" id="demoCode">
+          <div class="line" data-l="0"><span class="kw">повторить</span> <span class="num">4</span> раза:</div>
+          <div class="line" data-l="1">&nbsp;&nbsp;шаг вперёд</div>
+          <div class="line" data-l="2">&nbsp;&nbsp;поворот направо</div>
+        </div>
+        <div class="demo-iter" id="demoIter">Итерация: 0 / 4</div>
+        <div class="demo-ctrls">
+          <button class="btn btn-primary" id="demoRun">▶ Запустить цикл</button>
+          <button class="btn btn-ghost" id="demoReset">Сброс</button>
+        </div>
+        <p style="font-size:13px;color:var(--t2);margin-top:.7rem">Нажми «Запустить» — и увидишь, как одно тело цикла повторяется 4 раза и рисует квадрат.</p>
+      </div>
+    </div>
+
+    <div class="lecture reveal" style="margin:1.4rem 0 2.6rem">
+      <h4>Цикл с условием: «пока …, повторять»</h4>
+      <p>Иногда число повторов заранее неизвестно — например, идти вперёд, пока впереди не стена. Тогда используют цикл с условием.</p>
+      <div class="code"><span class="kw">пока</span> впереди свободно:<br>&nbsp;&nbsp;&nbsp;&nbsp;шаг вперёд</div>
+      <p>Перед каждым повтором проверяется условие. Пока оно верно — тело выполняется снова. Появилась стена — цикл останавливается.</p>
+      <h4>Типичные ошибки</h4>
+      <ul>
+        <li><b style="color:var(--t1)">Бесконечный цикл</b> — условие никогда не станет ложным, программа «зависает».</li>
+        <li><b style="color:var(--t1)">Ошибка «на единицу»</b> — повторили на раз меньше или больше, чем нужно.</li>
+        <li><b style="color:var(--t1)">Неверное тело цикла</b> — лишняя или пропущенная команда внутри.</li>
+      </ul>
+      <div class="note ok"><b style="color:var(--t1)">Главное:</b> цикл нужен, чтобы не повторять одинаковые команды вручную. Известно число повторов — берём счётчик; зависит от ситуации — цикл с условием.</div>
+    </div>
+
+    <div class="step-tag reveal"><span class="dot">3</span> Инфографика</div>
+    <div class="info-grid reveal" style="margin-bottom:2.6rem">
+      <figure><img class="zoom" src="assets/img/infogram1.png" alt="Статистика интереса к теме" loading="lazy"><figcaption><b>Статистическая</b>Интерес к теме «основы программирования»</figcaption></figure>
+      <figure><img class="zoom" src="assets/img/infogram2.png" alt="3 факта о циклах" loading="lazy"><figcaption><b>Информационная</b>3 факта о циклах</figcaption></figure>
+      <figure><img class="zoom" src="assets/img/infogram3.png" alt="Как работает цикл с условием" loading="lazy"><figcaption><b>Процессуальная</b>Как работает цикл с условием</figcaption></figure>
+    </div>
+
+    <div class="step-tag reveal"><span class="dot">4</span> Тренировочные задания</div>
+    <div class="reveal" style="margin-bottom:2.6rem">
+      <div class="embed"><div class="embed-head"><b>№1. Соответствие терминов</b><span class="tag">LearningApps</span></div><iframe src="https://learningapps.org/watch?v=piopnzfhc26" style="height:500px" allowfullscreen loading="lazy" title="Соответствие терминов"></iframe></div>
+      <div class="embed"><div class="embed-head"><b>№2. Подсчёт шагов цикла</b><span class="tag">Удоба · H5P</span></div><iframe src="https://udoba.org/h5p/embed/317513" style="height:260px" allowfullscreen loading="lazy" title="Подсчёт шагов"></iframe></div>
+      <div class="embed"><div class="embed-head"><b>№3. Последовательность шагов</b><span class="tag">LearningApps</span></div><iframe src="https://learningapps.org/watch?v=pcukmhtv526" style="height:500px" allowfullscreen loading="lazy" title="Последовательность шагов"></iframe></div>
+      <div class="embed"><div class="embed-head"><b>№4. Поиск ошибки</b><span class="tag">WordWall</span></div><iframe src="https://wordwall.net/ru/embed/619e4b3641414485a0c8c10c3618680e?themeId=1&templateId=5&fontStackId=0" style="height:400px" allowfullscreen loading="lazy" title="Поиск ошибки"></iframe></div>
+      <div class="embed"><div class="embed-head"><b>🎮 Диалоговая игра «Цикл»</b><span class="tag">Удоба · H5P</span></div><iframe src="https://udoba.org/h5p/embed/317514" style="height:600px" allowfullscreen loading="lazy" title="Диалоговая игра"></iframe></div>
+    </div>
+
+    <div class="step-tag reveal"><span class="dot">5</span> Задания для самостоятельной работы</div>
+    <div class="reveal" style="margin-bottom:2.6rem">
+      <div class="task-box"><h4>1. Собери алгоритм с циклом</h4><p>Составь алгоритм, по которому робот нарисует «лесенку» из 5 ступенек, используя цикл со счётчиком. Запиши тело цикла и число повторений.</p></div>
+      <div class="task-box"><h4>2. Циклы вокруг нас</h4><p>Найди в жизни три повторяющихся действия и запиши каждое как «повторить N раз: …».</p></div>
+      <div class="task-box"><h4>3. Мини-эксперимент</h4><p>В задаче про квадрат измени число повторений с 4 на 3 и на 5. Опиши, какая фигура получится и почему.</p></div>
+      <div class="task-box"><h4>4. Вопрос на форум</h4><p>Обсуди: когда удобнее цикл со счётчиком, а когда с условием? Приведи свой пример.</p></div>
+    </div>
+
+    <div class="step-tag reveal"><span class="dot">6</span> Итоговый тест по теме</div>
+    <div class="quiz reveal" id="quiz">
+      <p style="color:var(--t2);font-size:14.5px;margin-bottom:.5rem">Ответь на 6 вопросов и нажми «Проверить». Тест проверяет понимание всей темы «Циклы».</p>
+
+      <div class="q" data-type="radio" data-answer="b">
+        <div class="q-head"><span class="q-num">1. Что называют телом цикла?</span><span class="q-type">один ответ</span></div>
+        <label class="opt"><input type="radio" name="q1" value="a"><span>команду остановки цикла</span></label>
+        <label class="opt"><input type="radio" name="q1" value="b"><span>действия, которые повторяются</span></label>
+        <label class="opt"><input type="radio" name="q1" value="c"><span>число повторений</span></label>
+        <label class="opt"><input type="radio" name="q1" value="d"><span>условие выхода</span></label>
+        <div class="q-fb ok">✓ Верно!</div><div class="q-fb no">✗ Тело цикла — это действия, которые повторяются.</div>
+      </div>
+
+      <div class="q" data-type="radio" data-answer="c">
+        <div class="q-head"><span class="q-num">2. Сколько раз выполнится команда «прыжок»?</span><span class="q-type">один ответ</span></div>
+        <div class="code" style="margin:.3rem 0">повторить 7 раз: прыжок</div>
+        <label class="opt"><input type="radio" name="q2" value="a"><span>1</span></label>
+        <label class="opt"><input type="radio" name="q2" value="b"><span>6</span></label>
+        <label class="opt"><input type="radio" name="q2" value="c"><span>7</span></label>
+        <label class="opt"><input type="radio" name="q2" value="d"><span>8</span></label>
+        <div class="q-fb ok">✓ Верно!</div><div class="q-fb no">✗ Счётчик равен 7 — команда выполнится 7 раз.</div>
+      </div>
+
+      <div class="q" data-type="checkbox" data-answer="a,b,c">
+        <div class="q-head"><span class="q-num">3. Какие утверждения о циклах верны?</span><span class="q-type">несколько ответов</span></div>
+        <label class="opt"><input type="checkbox" name="q3" value="a"><span>цикл помогает не писать одинаковые команды много раз</span></label>
+        <label class="opt"><input type="checkbox" name="q3" value="b"><span>цикл со счётчиком повторяет действие заданное число раз</span></label>
+        <label class="opt"><input type="checkbox" name="q3" value="c"><span>цикл с условием выполняется, пока условие истинно</span></label>
+        <label class="opt"><input type="checkbox" name="q3" value="d"><span>цикл всегда выполняется ровно один раз</span></label>
+        <label class="opt"><input type="checkbox" name="q3" value="e"><span>цикл не может содержать другие команды</span></label>
+        <div class="q-fb ok">✓ Верно!</div><div class="q-fb no">✗ Верны первые три утверждения.</div>
+      </div>
+
+      <div class="q" data-type="match" data-answer="schet=quad,uslov=wall">
+        <div class="q-head"><span class="q-num">4. Сопоставь вид цикла и ситуацию</span><span class="q-type">соответствие</span></div>
+        <div class="match-row">Цикл со счётчиком →
+          <select data-key="schet"><option value="">— выбери —</option><option value="quad">нарисовать квадрат (4 стороны)</option><option value="wall">идти, пока не появится стена</option></select></div>
+        <div class="match-row">Цикл с условием →
+          <select data-key="uslov"><option value="">— выбери —</option><option value="quad">нарисовать квадрат (4 стороны)</option><option value="wall">идти, пока не появится стена</option></select></div>
+        <div class="q-fb ok">✓ Верно!</div><div class="q-fb no">✗ Счётчик — квадрат; условие — идти до стены.</div>
+      </div>
+
+      <div class="q" data-type="radio" data-answer="b">
+        <div class="q-head"><span class="q-num">5. Правильный порядок выполнения цикла с условием</span><span class="q-type">последовательность</span></div>
+        <label class="opt"><input type="radio" name="q5" value="a"><span>тело → проверка → выход → возврат</span></label>
+        <label class="opt"><input type="radio" name="q5" value="b"><span>проверка → тело (если истинно) → возврат к проверке → выход (если ложно)</span></label>
+        <label class="opt"><input type="radio" name="q5" value="c"><span>выход → проверка → тело → возврат</span></label>
+        <div class="q-fb ok">✓ Верно!</div><div class="q-fb no">✗ Сначала проверка условия, затем тело, возврат и выход.</div>
+      </div>
+
+      <div class="q" data-type="text" data-answer="бесконечный">
+        <div class="q-head"><span class="q-num">6. Вставь пропущенное слово</span><span class="q-type">ввод ответа</span></div>
+        <p style="font-size:14.5px;color:var(--t2);font-style:italic;margin:.3rem 0">«Если условие цикла никогда не станет ложным, возникает ________ цикл, и программа зависает.»</p>
+        <input type="text" name="q6" placeholder="введите слово" autocomplete="off">
+        <div class="q-fb ok">✓ Верно!</div><div class="q-fb no">✗ Правильный ответ: «бесконечный».</div>
+      </div>
+
+      <div class="quiz-actions">
+        <button class="btn btn-primary" id="checkBtn">Проверить</button>
+        <button class="btn btn-ghost" id="resetBtn" style="display:none">Пройти заново</button>
+        <span class="score" id="score"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container f-grid">
+    <div>
+      <h4 class="g">Игровые основы программирования</h4>
+      <p>Цифровой образовательный ресурс для школьников 5–8 классов. Разработан в рамках дисциплины «Разработка цифрового образовательного контента».</p>
+    </div>
+    <div>
+      <h4>Навигация</h4>
+      <ul><li><a href="#about">О курсе</a></li><li><a href="#program">Программа</a></li><li><a href="#module">Модуль «Циклы»</a></li><li><a href="index.html">Портфолио разработки</a></li></ul>
+    </div>
+    <div>
+      <h4>Автор</h4>
+      <ul><li>Савчишен Алексей Алексеевич</li><li>ТГПУ им. Л. Н. Толстого, гр. 1680151И</li><li><a href="mailto:dlyauchebitpgu@gmail.com">dlyauchebitpgu@gmail.com</a></li><li><a href="tel:+79539688575">+7 953 968-85-75</a></li></ul>
+    </div>
+  </div>
+  <div class="f-bottom"><span>© 2026 · ЦОР «Игровые основы программирования»</span><span>цор.online</span></div>
+</footer>
+
+<button class="totop" id="totop" aria-label="Наверх"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 15l7-7 7 7"/></svg></button>
+<div class="lb" id="lb"><button class="lb-x" id="lbx" aria-label="Закрыть">&times;</button><img id="lbi" src="" alt=""></div>
+
+<script src="assets/js/course.js"></script>
+<script src="assets/js/fx.js"></script>
+</body>
+</html>

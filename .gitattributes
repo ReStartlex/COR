@@ -1,0 +1,12 @@
+# Единые переносы строк во всём репозитории
+* text=auto eol=lf
+
+# Бинарные файлы — без преобразований
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.mp4  binary
+*.pdf  binary
+*.heic binary
+*.ico  binary

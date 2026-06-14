@@ -1,0 +1,30 @@
+/* print.css: печать и reduced-motion — часть стилей ЦОР «Игровые основы программирования». Не редактируйте порядок подключения в <head>. */
+@media print {
+            .nav, .sidebar, .sidebar-overlay, .back-to-top, .reading-progress,
+            .ambient-bg, .noise-overlay, .toast, .scroll-indicator, .hero-cta,
+            .expand-all-btn, .reset-progress-btn, .theme-toggle, .nav-hamburger,
+            .skip-link, .confetti-layer, .read-time { display: none !important; }
+            .subtask-tabs { display: none !important; }
+            .main { padding-top: 0; }
+            .task-card-body { max-height: none !important; }
+            .subtask-panel { display: block !important; }
+            .task-card { break-inside: avoid; opacity: 1 !important; transform: none !important; }
+            .fade-in { opacity: 1 !important; transform: none !important; }
+            body { background: white; color: black; }
+            .hero { min-height: auto; padding: 2rem 0; }
+        }
+@media (hover: none) and (pointer: coarse) {
+            .task-card-header { min-height: 56px; }
+            .sidebar-item { min-height: 44px; }
+            .nav-link { min-height: 40px; display: flex; align-items: center; }
+            .theme-toggle, .nav-hamburger { min-width: 44px; min-height: 44px; }
+        }
+@media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            .ambient-orb { animation: none; }
+            html { scroll-behavior: auto; }
+        }

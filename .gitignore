@@ -1,0 +1,21 @@
+# Зависимости и сборка
+node_modules/
+dist/
+.vite/
+
+# Большой видеофайл видеолекции (~114 МБ) превышает лимит GitHub в 100 МБ.
+# Загружается на сервер отдельно через scp (см. DEPLOY.md), либо подключите Git LFS.
+assets/video/cikly-lecture.mp4
+
+# Системные / редакторские
+.DS_Store
+Thumbs.db
+*.log
+.idea/
+.vscode/
+_*.png
+_*.js
+_*.html
+
+# Исходник фото в HEIC (не нужен в продакшене)
+assets/img/author-source.heic

@@ -1,0 +1,39 @@
+/* premium.css — премиум-слой портфолио (index.html).
+   Подключается ПОСЛЕ остальных стилей. Только косметика поверх существующей
+   вёрстки: дисплейная типографика, мерцание градиента, утончённые ховеры,
+   блеск кнопок, премиум-тени. Структуру не меняет. */
+
+/* дисплейный шрифт для крупных заголовков */
+.hero h1,
+.section-header h2,
+.theme-divider-text h3,
+.project-card-title,
+.nav-title { font-family: var(--font-display); letter-spacing: -0.015em; }
+.hero-stat-num { font-family: var(--font-display); }
+
+/* живое мерцание градиентного текста */
+.gradient-text { background-size: 220% auto; animation: shineIdx 7s linear infinite; }
+@keyframes shineIdx { to { background-position: 220% center; } }
+
+/* премиальные ховеры карточек */
+.theme-card, .project-card, .stat-box, .skill-col, .criteria-col, .resource-card {
+  transition: transform .28s cubic-bezier(.22,1,.36,1), border-color .28s ease, box-shadow .28s ease;
+}
+.theme-card:hover, .project-card:hover { box-shadow: var(--shadow-lg); border-color: var(--border-hover); }
+[data-tilt] { will-change: transform; transform-style: preserve-3d; }
+[data-magnetic] { transition: transform .2s cubic-bezier(.22,1,.36,1); }
+
+/* блеск на главных кнопках */
+.hero-cta, .course-cta { position: relative; overflow: hidden; }
+.hero-cta::after, .course-cta::after {
+  content: ""; position: absolute; top: 0; left: -120%; width: 55%; height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.45), transparent);
+  transform: skewX(-20deg); transition: left .6s ease; pointer-events: none;
+}
+.hero-cta:hover::after, .course-cta:hover::after { left: 140%; }
+
+/* градиент в полосе прогресса чтения */
+.reading-progress { background: var(--accent-gradient) !important; }
+
+/* чуть «дороже» дефолтные тени крупных блоков */
+.project-card { box-shadow: var(--shadow-md); }
