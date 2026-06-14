@@ -26,6 +26,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Unbounded:wght@600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/course.css">
 <noscript><style>.reveal{opacity:1!important;transform:none!important}.nav-links{position:static!important;opacity:1!important;transform:none!important;pointer-events:auto!important}</style></noscript>
+<script defer src="https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.min.js"></script>
+<script defer src="assets/js/hero3d.js"></script>
 </head>
 <body>
 
@@ -74,10 +76,11 @@
     <div class="reveal in" data-d="1">
       <div class="console" data-spotlight>
         <div class="console-bar"><i></i><i></i><i></i><span>robot.loop()</span></div>
-        <canvas id="heroCanvas" width="520" height="420" aria-label="Анимация: робот рисует квадрат с помощью цикла"></canvas>
-        <div class="console-cap">↑ это цикл в действии — робот повторяет «вперёд + поворот»</div>
-        <span class="float-sym" style="top:18px;right:24px;font-size:20px">{ }</span>
-        <span class="float-sym" style="bottom:60px;left:18px;font-size:16px;animation-delay:-3s">&lt;/&gt;</span>
+        <div class="stage">
+          <canvas id="heroCanvas" width="520" height="420" aria-label="Анимация: робот рисует квадрат с помощью цикла"></canvas>
+          <div id="hero3d" aria-hidden="true"></div>
+        </div>
+        <p class="console-cap">Это <b>цикл</b> в действии — робот повторяет «вперёд + поворот»</p>
       </div>
     </div>
   </div>
