@@ -29,6 +29,8 @@ export interface SubjectMeta {
   description: string
   /** Семестр/период. */
   term?: string
+  /** Статус работы студента по предмету: 'completed' (ответы готовы) | 'in_progress'. */
+  studentStatus?: 'completed' | 'in_progress'
   /** Акцентный токен: '1' | '2' | '3' | '4' (см. --accent-*). */
   accent?: '1' | '2' | '3' | '4'
   /** Эмодзи/иконка предмета. */
@@ -46,10 +48,10 @@ export interface TaskWithProgress extends TaskMeta {
   grade?: number | null
 }
 
-/** Сводный прогресс по предмету (вычисляется). */
+/** Сводный прогресс ЧТЕНИЯ по предмету (сколько ответов прочитал преподаватель). */
 export interface SubjectProgress {
   total: number
-  done: number
-  inProgress: number
+  /** Сколько заданий отмечено прочитанными. */
+  read: number
   percent: number
 }

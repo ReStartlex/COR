@@ -14,14 +14,11 @@ export default function SubjectCard({
   progress: SubjectProgress
 }) {
   const tasks = taskCount(meta)
-  const done = progress.percent === 100
-  const started = progress.done > 0 || progress.inProgress > 0
-
-  const status = done
-    ? { cls: s.statusDone, label: 'Завершён' }
-    : started
-      ? { cls: s.statusProgress, label: 'В процессе' }
-      : { cls: s.statusSoon, label: 'Не начат' }
+  // Бейдж — статус РАБОТЫ СТУДЕНТА (ответы готовы), а не чтения преподавателем.
+  const status =
+    meta.studentStatus === 'completed'
+      ? { cls: s.statusDone, label: '✓ Выполнен' }
+      : { cls: s.statusProgress, label: 'В работе' }
 
   return (
     <Link href={`/subjects/${meta.slug}`} className={s.card}>
@@ -44,8 +41,8 @@ export default function SubjectCard({
           <span className={s.metaLabel}>заданий</span>
         </div>
         <div className={s.metaItem}>
-          <span className={s.metaNum}>{progress.done}</span>
-          <span className={s.metaLabel}>выполнено</span>
+          <span className={s.metaNum}>{progress.read}</span>
+          <span className={s.metaLabel}>прочитано</span>
         </div>
       </div>
       <div className={s.progressRow}>

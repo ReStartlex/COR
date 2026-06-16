@@ -1,18 +1,19 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import type { SubjectMeta, TaskStatus } from '@/lib/types'
+import type { SubjectMeta } from '@/lib/types'
 import SiteNav from '@/components/layout/SiteNav'
 import { taskAnchor } from '@/lib/anchor'
+import { useReading } from './ReadingProvider'
 
 interface CourseChromeProps {
   meta: SubjectMeta
-  statuses: Record<string, TaskStatus>
 }
 
-export default function CourseChrome({ meta, statuses }: CourseChromeProps) {
+export default function CourseChrome({ meta }: CourseChromeProps) {
   const [open, setOpen] = useState(false)
   const [active, setActive] = useState('')
+  const { isRead } = useReading()
 
   // Scroll-spy: подсвечиваем задание, чьё начало ближе всего к верху.
   useEffect(() => {
@@ -59,8 +60,7 @@ export default function CourseChrome({ meta, statuses }: CourseChromeProps) {
             </div>
             {theme.tasks.map((task) => {
               const anchor = taskAnchor(task.id)
-              const st = statuses[task.id] ?? 'not_started'
-              const read = st === 'done' || st === 'read'
+              const read = isRead(task.id)
               return (
                 <a
                   key={task.id}

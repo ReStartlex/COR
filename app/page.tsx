@@ -19,7 +19,7 @@ export default async function HomePage() {
   )
 
   const totalTasks = withProgress.reduce((n, x) => n + x.progress.total, 0)
-  const totalDone = withProgress.reduce((n, x) => n + x.progress.done, 0)
+  const totalRead = withProgress.reduce((n, x) => n + x.progress.read, 0)
   const avgPercent =
     withProgress.length === 0
       ? 0
@@ -43,9 +43,9 @@ export default async function HomePage() {
             Образовательная <span className="gradient-text">платформа</span>
           </h1>
           <p className="hero-subtitle">
-            Предметы магистратуры как завершённые курсы: теория, задания, интерактив и
-            итоговый результат. Каждая дисциплина — отдельный путь обучения с навигацией и
-            статусами.
+            Портфолио выполненных работ магистранта: каждый предмет — отдельный курс с
+            теорией, заданиями и интерактивом. Преподаватели могут ознакомиться с ответами и
+            отмечать прочитанное.
           </p>
 
           <div className={s.profileCard}>
@@ -83,12 +83,12 @@ export default async function HomePage() {
               <div className="hero-stat-label">Заданий</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-num">{totalDone}</div>
-              <div className="hero-stat-label">Выполнено</div>
+              <div className="hero-stat-num">{totalRead}</div>
+              <div className="hero-stat-label">Прочитано</div>
             </div>
             <div className="hero-stat">
               <div className="hero-stat-num">{avgPercent}</div>
-              <div className="hero-stat-label">Прогресс, %</div>
+              <div className="hero-stat-label">Прочитано, %</div>
             </div>
           </div>
         </section>
@@ -98,8 +98,8 @@ export default async function HomePage() {
             <div className="section-label">Дисциплины</div>
             <h2>Мои предметы</h2>
             <p>
-              Список изучаемых дисциплин. Откройте предмет, чтобы перейти к темам, заданиям,
-              теории и интерактивным материалам курса.
+              Дисциплины с выполненными работами. Откройте предмет, чтобы ознакомиться с
+              темами, ответами на задания, теорией и интерактивными материалами.
             </p>
           </div>
           <div className={s.grid}>

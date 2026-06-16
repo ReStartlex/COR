@@ -2,13 +2,18 @@ import { prisma } from './db'
 import type { SubjectMeta, SubjectProgress, TaskStatus } from './types'
 import { getSubjectTaskIds } from './content'
 
-export const STATUS_ORDER: TaskStatus[] = ['not_started', 'in_progress', 'read', 'done']
-
+// Сайт — портфолио готовых ответов студента; преподаватель ОЗНАКАМЛИВАЕТСЯ.
+// Поэтому статус задания — про чтение преподавателем, а не про выполнение студентом.
 export const STATUS_LABEL: Record<TaskStatus, string> = {
-  not_started: 'Не начато',
-  in_progress: 'В процессе',
-  read: 'Изучено',
-  done: 'Выполнено',
+  not_started: 'Не прочитано',
+  in_progress: 'Читается',
+  read: 'Прочитано',
+  done: 'Прочитано',
+}
+
+/** Прочитано ли задание (read и done — синонимы «прочитано»). */
+export function isRead(status: TaskStatus | undefined): boolean {
+  return status === 'read' || status === 'done'
 }
 
 /** Карта статусов заданий предмета из БД: { taskId: status }. */
@@ -21,25 +26,21 @@ export async function getSubjectStatuses(
   return map
 }
 
-/** Сводный прогресс по предмету. «done» и «read» считаем выполненными. */
+/** Сводный прогресс чтения по предмету (сколько ответов прочитал преподаватель). */
 export function computeProgress(
   meta: SubjectMeta,
   statuses: Record<string, TaskStatus>
 ): SubjectProgress {
   const ids = getSubjectTaskIds(meta)
   const total = ids.length
-  let done = 0
-  let inProgress = 0
+  let read = 0
   for (const id of ids) {
-    const s = statuses[id] ?? 'not_started'
-    if (s === 'done' || s === 'read') done++
-    else if (s === 'in_progress') inProgress++
+    if (isRead(statuses[id])) read++
   }
   return {
     total,
-    done,
-    inProgress,
-    percent: total === 0 ? 0 : Math.round((done / total) * 100),
+    read,
+    percent: total === 0 ? 0 : Math.round((read / total) * 100),
   }
 }
 

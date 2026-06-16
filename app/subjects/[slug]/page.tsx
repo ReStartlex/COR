@@ -1,12 +1,15 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { getSubject, getTaskHtml } from '@/lib/content'
-import { getSubjectStatuses, computeProgress } from '@/lib/progress'
+import { getSubject, getTaskHtml, getSubjectTaskIds } from '@/lib/content'
+import { getSubjectStatuses, computeProgress, isRead } from '@/lib/progress'
 import CourseChrome from '@/components/course/CourseChrome'
 import { taskAnchor } from '@/lib/anchor'
 import TaskCard from '@/components/course/TaskCard'
 import Lightbox from '@/components/course/Lightbox'
 import Toast from '@/components/course/Toast'
+import ReadingProvider from '@/components/course/ReadingProvider'
+import { ReadCount, ReadPercent } from '@/components/course/ReadingStats'
+import FinalResult from '@/components/course/FinalResult'
 import s from '@/components/course/course.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -35,6 +38,9 @@ export default async function SubjectPage({
 
   const statuses = await getSubjectStatuses(slug)
   const progress = computeProgress(meta, statuses)
+  const allIds = getSubjectTaskIds(meta)
+  const initialRead = allIds.filter((id) => isRead(statuses[id]))
+  const studentCompleted = meta.studentStatus === 'completed'
 
   // Загружаем тела заданий на сервере (фрагменты из content/.../tasks/<id>.html).
   const bodies: Record<string, string | null> = {}
@@ -45,8 +51,8 @@ export default async function SubjectPage({
   const firstTaskId = meta.themes[0]?.tasks[0]?.id
 
   return (
-    <>
-      <CourseChrome meta={meta} statuses={statuses} />
+    <ReadingProvider subjectSlug={slug} taskIds={allIds} initialRead={initialRead}>
+      <CourseChrome meta={meta} />
 
       <main className="main" id="top">
         {/* ===== HERO курса ===== */}
@@ -57,6 +63,14 @@ export default async function SubjectPage({
           </div>
           <h1>{meta.title}</h1>
           <p className="hero-subtitle">{meta.description}</p>
+          {studentCompleted && (
+            <div className={s.studentDone}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5}>
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+              Все задания по предмету выполнены студентом
+            </div>
+          )}
           <div className="hero-stats">
             <div className="hero-stat">
               <div className="hero-stat-num">{meta.themes.length}</div>
@@ -67,18 +81,22 @@ export default async function SubjectPage({
               <div className="hero-stat-label">Заданий</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-num">{progress.done}</div>
-              <div className="hero-stat-label">Выполнено</div>
+              <div className="hero-stat-num">
+                <ReadCount />
+              </div>
+              <div className="hero-stat-label">Прочитано</div>
             </div>
             <div className="hero-stat">
-              <div className="hero-stat-num">{progress.percent}</div>
-              <div className="hero-stat-label">Прогресс, %</div>
+              <div className="hero-stat-num">
+                <ReadPercent />
+              </div>
+              <div className="hero-stat-label">Прочитано, %</div>
             </div>
           </div>
           <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center', marginTop: '2rem' }}>
             {firstTaskId && (
               <a href={`#${taskAnchor(firstTaskId)}`} className="hero-cta">
-                К заданиям
+                К ответам
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                   <path d="M5 12h14M13 6l6 6-6 6" />
                 </svg>
@@ -108,8 +126,7 @@ export default async function SubjectPage({
               <div className="module-item" data-num={i + 1} key={theme.id}>
                 <div className="module-title">{theme.title}</div>
                 <div className="module-desc">
-                  {theme.tasks.length} заданий ·{' '}
-                  {theme.tasks.map((t) => t.id).join(', ')}
+                  {theme.tasks.length} заданий · {theme.tasks.map((t) => t.id).join(', ')}
                 </div>
               </div>
             ))}
@@ -121,9 +138,7 @@ export default async function SubjectPage({
           <section className="section" id={theme.id} key={theme.id}>
             <div className="theme-divider">
               <div className="theme-divider-inner">
-                <div className={`theme-divider-icon t${(ti % 2) + 1}`}>
-                  {THEME_ICONS[ti] ?? '📘'}
-                </div>
+                <div className={`theme-divider-icon t${(ti % 2) + 1}`}>{THEME_ICONS[ti] ?? '📘'}</div>
                 <div className="theme-divider-text">
                   <h3>
                     Тема {ti + 1}. {theme.title}
@@ -156,7 +171,6 @@ export default async function SubjectPage({
                   title={task.title}
                   kind={task.kind}
                   desc={task.desc}
-                  status={statuses[task.id] ?? 'not_started'}
                   html={html}
                   defaultOpen={task.id === firstTaskId}
                 />
@@ -169,48 +183,9 @@ export default async function SubjectPage({
         <section className="section" id="result">
           <div className="section-header visible">
             <div className="section-label">Итог</div>
-            <h2>Результат по предмету</h2>
+            <h2>Ознакомление с ответами</h2>
           </div>
-          <div className={s.finalCard}>
-            <div
-              className={s.finalRing}
-              style={{
-                background: `conic-gradient(var(--accent-3) ${progress.percent * 3.6}deg, var(--toggle-bg) 0deg)`,
-              }}
-            >
-              <div className={s.finalRingInner}>
-                <span className={s.finalPct}>{progress.percent}%</span>
-                <span className={s.finalPctLabel}>готово</span>
-              </div>
-            </div>
-            <div className={s.finalBody}>
-              <h3>
-                {progress.percent === 100
-                  ? 'Курс пройден полностью'
-                  : progress.done > 0
-                    ? 'Курс в процессе изучения'
-                    : 'Курс ещё не начат'}
-              </h3>
-              <p>
-                Прогресс отражает долю выполненных заданий курса. Статусы отдельных работ
-                отмечаются в карточках заданий и сохраняются в системе.
-              </p>
-              <div className={s.finalStats}>
-                <div className={s.finalStat}>
-                  <span className={s.finalStatNum}>{progress.done}</span>
-                  <span className={s.finalStatLabel}>выполнено</span>
-                </div>
-                <div className={s.finalStat}>
-                  <span className={s.finalStatNum}>{progress.inProgress}</span>
-                  <span className={s.finalStatLabel}>в процессе</span>
-                </div>
-                <div className={s.finalStat}>
-                  <span className={s.finalStatNum}>{progress.total}</span>
-                  <span className={s.finalStatLabel}>всего</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <FinalResult studentCompleted={studentCompleted} />
         </section>
 
         <footer className="footer">
@@ -221,6 +196,6 @@ export default async function SubjectPage({
 
       <Lightbox />
       <Toast />
-    </>
+    </ReadingProvider>
   )
 }
