@@ -34,7 +34,7 @@ export default async function HomePage() {
       />
 
       <main className="main" id="top">
-        <section className="hero">
+        <section className="hero" style={{ minHeight: 'auto', padding: '7rem 2rem 2rem' }}>
           <div className="hero-badge">
             <span className="dot" />
             {profile.program}

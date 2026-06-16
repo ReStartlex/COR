@@ -1721,3 +1721,43 @@
 /* чуть «дороже» дефолтные тени крупных блоков */
 .project-card { box-shadow: var(--shadow-md); }
 
+/* ===== MARKDOWN-КОНТЕНТ (предметы из .md): таблицы, цитаты, заголовки ===== */
+.content h2 {
+    font-family: var(--font-display);
+    font-size: 1.35rem; font-weight: 700; line-height: 1.25;
+    margin: 2rem 0 1rem; letter-spacing: -0.01em;
+}
+.content h2:first-child { margin-top: 0; }
+.content blockquote {
+    margin: 1.25rem 0; padding: 1rem 1.25rem;
+    border-left: 3px solid var(--accent-1);
+    background: rgba(59,130,246,0.05);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    color: var(--text-secondary);
+}
+.content blockquote p { margin: 0; }
+.content blockquote strong { color: var(--accent-1); }
+.content a { color: var(--accent-1); text-decoration: none; border-bottom: 1px solid rgba(59,130,246,0.3); }
+.content a:hover { border-bottom-color: var(--accent-1); }
+.content hr { border: none; height: 1px; background: var(--border); margin: 1.75rem 0; }
+.content table {
+    width: 100%; border-collapse: collapse; margin: 1.25rem 0;
+    font-size: 13.5px; display: block; overflow-x: auto;
+}
+.content table thead th {
+    text-align: left; padding: 0.7rem 0.85rem; font-weight: 700;
+    color: var(--accent-1); background: var(--table-head-bg);
+    border-bottom: 1px solid var(--border); white-space: nowrap;
+}
+.content table td {
+    padding: 0.7rem 0.85rem; border-bottom: 1px solid var(--border);
+    color: var(--text-secondary); vertical-align: top; line-height: 1.55;
+}
+.content table tbody tr:hover td { background: var(--table-hover); }
+.content table strong { color: var(--text-primary); }
+.content code {
+    font-family: 'JetBrains Mono', monospace; font-size: 0.92em;
+    background: var(--toggle-bg); padding: 1px 6px; border-radius: 5px;
+    color: var(--accent-1);
+}
+

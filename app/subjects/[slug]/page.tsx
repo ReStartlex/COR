@@ -10,6 +10,7 @@ import Toast from '@/components/course/Toast'
 import ReadingProvider from '@/components/course/ReadingProvider'
 import { ReadCount, ReadPercent } from '@/components/course/ReadingStats'
 import FinalResult from '@/components/course/FinalResult'
+import { ProjectPassport, SystemMap } from '@/components/course/ProjectPassport'
 import s from '@/components/course/course.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -113,6 +114,24 @@ export default async function SubjectPage({
           </div>
         </section>
 
+        {/* ===== Паспорт проектной работы ===== */}
+        {meta.passport && meta.passport.length > 0 && (
+          <section className="section" id="passport">
+            <ProjectPassport rows={meta.passport} />
+          </section>
+        )}
+
+        {/* ===== Карта образовательной системы ===== */}
+        {meta.systemMap && meta.systemMap.length > 0 && (
+          <section className="section" id="systemmap">
+            <div className="section-header visible">
+              <div className="section-label">Системный подход</div>
+              <h2>Карта проектируемой образовательной системы</h2>
+            </div>
+            <SystemMap items={meta.systemMap} />
+          </section>
+        )}
+
         {/* ===== Обзор тем ===== */}
         <section className="section" id="overview">
           <div className="section-header visible">
@@ -167,6 +186,7 @@ export default async function SubjectPage({
                 <TaskCard
                   key={task.id}
                   id={task.id}
+                  numLabel={task.numLabel}
                   anchor={taskAnchor(task.id)}
                   title={task.title}
                   kind={task.kind}

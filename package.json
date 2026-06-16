@@ -24,6 +24,7 @@
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "cheerio": "^1.2.0",
+    "marked": "^18.0.5",
     "prisma": "^6.1.0",
     "typescript": "^5.7.0"
   }

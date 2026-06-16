@@ -7,6 +7,7 @@ import s from './course.module.css'
 
 export interface TaskCardProps {
   id: string // "1.5"
+  numLabel?: string // что показать в бейдже-номере, если отличается от id
   anchor: string // "task-1-5"
   title: string
   kind?: string
@@ -28,6 +29,7 @@ function readMinutes(html: string): number {
 
 export default function TaskCard({
   id,
+  numLabel,
   anchor,
   title,
   kind,
@@ -74,7 +76,7 @@ export default function TaskCard({
           }
         }}
       >
-        <div className="task-num">{id}</div>
+        <div className="task-num">{numLabel ?? id}</div>
         <div className="task-card-info">
           <div className="task-card-title">
             {title}

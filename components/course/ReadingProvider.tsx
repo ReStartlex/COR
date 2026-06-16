@@ -54,6 +54,8 @@ export default function ReadingProvider({
   children: React.ReactNode
 }) {
   const [read, setReadState] = useState<Set<string>>(() => new Set(initialRead))
+  // readRef — актуальное состояние для обработчиков (без побочных эффектов в setState-updater).
+  const readRef = useRef(read)
   const celebrated = useRef(initialRead.length >= taskIds.length && taskIds.length > 0)
 
   const persist = useCallback(
@@ -69,30 +71,28 @@ export default function ReadingProvider({
 
   const setRead = useCallback(
     (id: string, value: boolean, opts?: { silent?: boolean }) => {
-      setReadState((prev) => {
-        if (prev.has(id) === value) return prev // ничего не изменилось
-        const next = new Set(prev)
-        if (value) next.add(id)
-        else next.delete(id)
-        persist(id, value)
-        if (value && !opts?.silent) toast(`Задание ${id} прочитано`)
-        // Поздравление при достижении 100% (один раз)
-        if (value && next.size >= taskIds.length && taskIds.length > 0 && !celebrated.current) {
-          celebrated.current = true
-          launchConfetti()
-          setTimeout(() => toast('Все ответы по предмету прочитаны 🎉'), 400)
-        }
-        if (next.size < taskIds.length) celebrated.current = false
-        return next
-      })
+      const cur = readRef.current
+      if (cur.has(id) === value) return // ничего не меняется
+      const next = new Set(cur)
+      if (value) next.add(id)
+      else next.delete(id)
+      readRef.current = next
+      setReadState(next)
+
+      // Побочные эффекты — ВНЕ обновителя состояния (мы внутри обработчика события).
+      persist(id, value)
+      if (value && !opts?.silent) toast(`Задание ${id} прочитано`)
+      if (value && next.size >= taskIds.length && taskIds.length > 0 && !celebrated.current) {
+        celebrated.current = true
+        launchConfetti()
+        setTimeout(() => toast('Все ответы по предмету прочитаны 🎉'), 400)
+      }
+      if (next.size < taskIds.length) celebrated.current = false
     },
     [persist, taskIds.length]
   )
 
-  const toggle = useCallback(
-    (id: string) => setRead(id, !read.has(id)),
-    [read, setRead]
-  )
+  const toggle = useCallback((id: string) => setRead(id, !readRef.current.has(id)), [setRead])
 
   const value = useMemo<ReadingCtx>(
     () => ({

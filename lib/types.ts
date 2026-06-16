@@ -4,13 +4,28 @@
 export type TaskStatus = 'not_started' | 'in_progress' | 'read' | 'done'
 
 export interface TaskMeta {
-  /** Номер задания, напр. "1.5". Уникален в пределах предмета. */
+  /** Номер задания, напр. "1.5". Уникален в пределах предмета. Используется в якоре/прогрессе. */
   id: string
+  /** Что показать в бейдже-номере, если отличается от id (напр. эмодзи). */
+  numLabel?: string
   title: string
   /** Тип работы: Лекция, Практическая, Самостоятельная и т.п. — для бейджа. */
   kind?: string
   /** Короткое описание для списков. */
   desc?: string
+}
+
+/** Строка паспорта проектной работы. */
+export interface PassportRow {
+  label: string
+  value: string
+}
+
+/** Карточка карты образовательной системы. */
+export interface SystemMapItem {
+  icon: string
+  label: string
+  value: string
 }
 
 export interface ThemeMeta {
@@ -39,6 +54,12 @@ export interface SubjectMeta {
   hasShowcase?: boolean
   showcaseSlug?: string
   showcaseTitle?: string
+  /** Преподаватель предмета (для проектных предметов). */
+  teacher?: string
+  /** Паспорт проектной работы (если предмет — проектная работа). */
+  passport?: PassportRow[]
+  /** Карта образовательной системы (карточки). */
+  systemMap?: SystemMapItem[]
   themes: ThemeMeta[]
 }
 
