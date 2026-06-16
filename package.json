@@ -1,17 +1,29 @@
 {
-  "name": "cor-igrovye-osnovy-programmirovaniya",
-  "version": "1.0.0",
+  "name": "cor-lms",
+  "version": "2.0.0",
   "private": true,
-  "description": "Цифровой образовательный ресурс «Игровые основы программирования» + портфолио разработки. Статический сайт (HTML/CSS/JS).",
+  "description": "ЦОР — мини-LMS: образовательная платформа с предметами-курсами. Next.js + TypeScript + Prisma.",
   "author": "Савчишен Алексей Алексеевич",
   "license": "UNLICENSED",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview --port 3002",
-    "serve": "vite preview --host --port 3002"
+    "dev": "next dev -p 3002",
+    "build": "prisma generate && next build",
+    "start": "next start -p 3002",
+    "lint": "next lint",
+    "db:push": "prisma db push",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.1.0",
+    "next": "^15.1.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "vite": "^5.4.0"
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "prisma": "^6.1.0",
+    "typescript": "^5.7.0"
   }
 }

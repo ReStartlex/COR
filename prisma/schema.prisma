@@ -1,0 +1,39 @@
+// Prisma + SQLite. БД хранит ТОЛЬКО динамику (профиль студента, статусы/оценки заданий).
+// Контент предметов (теория, задания, тесты) живёт файлами в content/.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Профиль студента — фактически singleton (один студент, открытый доступ).
+model StudentProfile {
+  id         Int      @id @default(1)
+  fullName   String   @default("Савчишен Алексей Алексеевич")
+  group      String   @default("1680151И")
+  university String   @default("ТГПУ им. Л. Н. Толстого")
+  program    String   @default("Магистратура · 1 курс · 2025/2026")
+  avatarUrl  String   @default("/assets/img/author.jpg")
+  bio        String   @default("")
+  email      String   @default("")
+  updatedAt  DateTime @updatedAt
+}
+
+// Прогресс по конкретному заданию предмета.
+// status: not_started | in_progress | read | done
+model TaskProgress {
+  id          Int      @id @default(autoincrement())
+  subjectSlug String
+  taskId      String
+  status      String   @default("not_started")
+  grade       Int?
+  note        String   @default("")
+  completedAt DateTime?
+  updatedAt   DateTime @updatedAt
+
+  @@unique([subjectSlug, taskId])
+  @@index([subjectSlug])
+}

@@ -1,0 +1,233 @@
+/* Стили главной: профиль студента + сетка предметов. Используют токены из globals.css. */
+
+.profileCard {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.5rem;
+  align-items: center;
+  max-width: 620px;
+  width: 100%;
+  margin: 2.25rem auto 0;
+  padding: 1.5rem 1.75rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.06), rgba(139, 92, 246, 0.04));
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  box-shadow: var(--shadow-md);
+  text-align: left;
+  animation: fadeInUp 0.6s ease 0.35s both;
+}
+.avatar {
+  width: 96px;
+  height: 96px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  border: 2px solid var(--border);
+  box-shadow: 0 8px 24px rgba(59, 130, 246, 0.15);
+}
+.profileBody h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text-primary);
+}
+.profileRole {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+  margin-bottom: 0.6rem;
+}
+.profileRows {
+  display: grid;
+  gap: 5px;
+}
+.profileRow {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+.profileRow svg {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-1);
+  flex-shrink: 0;
+}
+
+/* ===== Сетка предметов ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  opacity: 0.9;
+}
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-lg);
+}
+.cardHead {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+.cardIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.14), rgba(6, 182, 212, 0.14));
+  flex-shrink: 0;
+}
+.cardTerm {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+.cardTitle {
+  font-size: 1.12rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 0.5rem;
+  color: var(--text-primary);
+}
+.cardDesc {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0 0 1.25rem;
+  flex: 1;
+}
+.cardMeta {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1rem;
+}
+.metaItem {
+  display: flex;
+  flex-direction: column;
+}
+.metaNum {
+  font-size: 1.1rem;
+  font-weight: 800;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--text-primary);
+  line-height: 1;
+}
+.metaLabel {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+/* Прогресс-бар предмета */
+.progressRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: auto;
+}
+.progressTrack {
+  flex: 1;
+  height: 8px;
+  border-radius: 100px;
+  background: var(--toggle-bg);
+  overflow: hidden;
+}
+.progressFill {
+  height: 100%;
+  border-radius: 100px;
+  background: var(--accent-gradient);
+  transition: width 0.5s ease;
+}
+.progressPct {
+  font-size: 12px;
+  font-weight: 700;
+  font-family: 'JetBrains Mono', monospace;
+  color: var(--accent-1);
+  min-width: 38px;
+  text-align: right;
+}
+
+/* Бейдж статуса предмета */
+.statusBadge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.statusDone {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+.statusProgress {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--accent-1);
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+.statusSoon {
+  background: var(--toggle-bg);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+
+/* Заглушка для будущего предмета */
+.cardPlaceholder {
+  composes: card;
+  border-style: dashed;
+  opacity: 0.85;
+}
+.cardPlaceholder::before {
+  opacity: 0.3;
+}
+
+@media (max-width: 560px) {
+  .profileCard {
+    grid-template-columns: 1fr;
+    text-align: center;
+    justify-items: center;
+  }
+  .profileRow {
+    justify-content: center;
+  }
+}

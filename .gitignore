@@ -1,11 +1,22 @@
 # Зависимости и сборка
 node_modules/
+/.next/
+/out/
+/build
 dist/
 .vite/
+next-env.d.ts
+*.tsbuildinfo
+
+# Окружение и БД (SQLite — локальный файл, в git не храним)
+.env
+.env*.local
+/prisma/*.db
+/prisma/*.db-journal
 
 # Большой видеофайл видеолекции (~114 МБ) превышает лимит GitHub в 100 МБ.
 # Загружается на сервер отдельно через scp (см. DEPLOY.md), либо подключите Git LFS.
-assets/video/cikly-lecture.mp4
+public/assets/video/cikly-lecture.mp4
 
 # Системные / редакторские
 .DS_Store
@@ -14,8 +25,6 @@ Thumbs.db
 .idea/
 .vscode/
 _*.png
-_*.js
-_*.html
 
 # Исходник фото в HEIC (не нужен в продакшене)
-assets/img/author-source.heic
+public/assets/img/author-source.heic
