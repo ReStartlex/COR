@@ -1,0 +1,87 @@
+<div class="subtask-tabs">
+                            <button class="subtask-tab active"><span class="tab-num">№1</span>Геймификация</button>
+                            <button class="subtask-tab"><span class="tab-num">№2</span>Диалоговая игра</button>
+                            <button class="subtask-tab"><span class="tab-num">№3</span>Анализ сложности</button>
+                        </div>
+
+                        <!-- 2.13.1 -->
+                        <div class="subtask-panel active" id="t213-p1">
+                            <h3>Задание 1. Геймификация и игровое обучение в ЭОР</h3>
+                            <p>Диалоговые игры — это «нестандартный» вариант тестирования, где проверка знаний встроена в сюжет: ученик принимает решения за персонажа, а каждый выбор даёт мгновенную обратную связь.</p>
+                            <div class="callout success">
+                                <p><strong>Моё мнение:</strong> элементы геймификации особенно полезны для моей аудитории — школьников 5–8 классов. Они снижают страх ошибки (можно попробовать ещё раз), повышают вовлечённость и превращают контроль в часть игры. Это согласуется с принципами интерактивности и наглядности (теория 1.2): ученик действует и сразу видит результат.</p>
+                                <p>Важно соблюдать меру: игра не должна заслонять учебную цель. Сюжет и баллы — это «обёртка», а проверяемое знание должно оставаться в центре. Поэтому в диалоговой игре каждый выбор привязан к конкретному понятию темы «Циклы».</p>
+                            </div>
+                        </div>
+
+                        <!-- 2.13.2 -->
+                        <div class="subtask-panel" id="t213-p2">
+                            <h3>Задание 2. Диалоговая игра «Робот в лабиринте»</h3>
+                            <p>Сюжет: робот должен пройти лабиринт. На каждом шаге игрок выбирает команду. Верный выбор — робот движется дальше; неверный — подсказка и повторная попытка. Игра проверяет понимание циклов.</p>
+
+                            <div class="game-step">
+                                <div class="gs-num">Шаг 1</div>
+                                <div class="game-q">Впереди дорожка из 8 одинаковых клеток. Как заставить робота пройти её?</div>
+                                <div class="game-opt no">8 раз написать команду «шаг вперёд» — долго и легко ошибиться</div>
+                                <div class="game-opt ok">✓ Использовать цикл: «повторить 8 раз: шаг вперёд»</div>
+                                <div class="game-opt no">Написать «шаг вперёд» один раз</div>
+                            </div>
+                            <div class="game-step">
+                                <div class="gs-num">Шаг 2</div>
+                                <div class="game-q">Робот не знает, сколько клеток до стены. Какой цикл выбрать?</div>
+                                <div class="game-opt no">Цикл со счётчиком «повторить 5 раз»</div>
+                                <div class="game-opt ok">✓ Цикл с условием: «пока впереди свободно — шаг вперёд»</div>
+                                <div class="game-opt no">Совсем без цикла</div>
+                            </div>
+                            <div class="game-step">
+                                <div class="gs-num">Шаг 3 · ловушка</div>
+                                <div class="game-q">Игрок написал «пока впереди свободно — поворот». Что произойдёт?</div>
+                                <div class="game-opt ok">✓ Бесконечный цикл: робот крутится на месте, ведь он не движется и стена не появляется</div>
+                                <div class="game-opt no">Робот дойдёт до стены</div>
+                                <div class="game-opt no">Робот сделает один поворот и остановится</div>
+                            </div>
+                            <p style="font-size:12.5px;color:var(--text-muted);margin-top:.5rem;">Выше — логика и реплики игры. Ниже — готовая интерактивная версия, собранная в H5P на платформе Удоба.</p>
+
+                            <p style="margin:.6rem 0 .4rem;"><span class="media-ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Игра создана и встроена</span></p>
+                            <div class="embed-card">
+                                <div class="embed-card-head">
+                                    <div class="embed-card-title">Диалоговая игра «Цикл» <span class="ec-badge">Удоба · H5P</span></div>
+                                    <a class="embed-open" href="https://udoba.org/node/317514" target="_blank" rel="noopener">Открыть ↗</a>
+                                </div>
+                                <iframe class="embed-frame udoba-h5p" src="https://udoba.org/h5p/embed/317514" style="height:600px" allowfullscreen="" frameborder="0" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *" loading="lazy" title="Диалоговая игра «Цикл»"></iframe>
+                            </div>
+                            <div class="callout success"><p>Диалоговая игра реализована как интерактивный H5P-сценарий: проверка знаний о циклах встроена в игровой сюжет с мгновенной обратной связью на каждый выбор.</p></div>
+                        </div>
+
+                        <!-- 2.13.3 -->
+                        <div class="subtask-panel" id="t213-p3">
+                            <h3>Задание 3. Оценка сложности заданий по результатам тестирования</h3>
+                            <p>Я обработал таблицу результатов тестирования (110 результатов, шкала 0–100%). Сначала построил <strong>гистограмму распределения</strong> всех результатов, затем рассчитал <strong>индекс лёгкости</strong> по каждому из четырёх заданий.</p>
+
+                            <h4>Гистограмма распределения результатов</h4>
+                            <div class="bar-chart">
+                                <div class="bar-col"><span class="bar-val">13</span><div class="bar-fill" style="height:39%"></div><span class="bar-label">0–49</span></div>
+                                <div class="bar-col"><span class="bar-val">3</span><div class="bar-fill" style="height:9%"></div><span class="bar-label">50–59</span></div>
+                                <div class="bar-col"><span class="bar-val">1</span><div class="bar-fill" style="height:3%"></div><span class="bar-label">60–69</span></div>
+                                <div class="bar-col"><span class="bar-val">32</span><div class="bar-fill" style="height:97%"></div><span class="bar-label">70–79</span></div>
+                                <div class="bar-col"><span class="bar-val">28</span><div class="bar-fill" style="height:85%"></div><span class="bar-label">80–89</span></div>
+                                <div class="bar-col"><span class="bar-val">33</span><div class="bar-fill" style="height:100%"></div><span class="bar-label">90–100</span></div>
+                            </div>
+                            <p class="chart-caption">Частота результатов по интервалам (всего 110). Среднее — 77,9; медиана — 81,5; минимум — 22; максимум — 100.</p>
+
+                            <h4>График трудности по заданиям (индекс лёгкости = доля верных)</h4>
+                            <div class="diff-row"><span class="diff-name">Задание 1</span><div class="diff-track"><div class="diff-bar" style="width:62%;background:#f59e0b;">0,62</div></div></div>
+                            <div class="diff-row"><span class="diff-name">Задание 2</span><div class="diff-track"><div class="diff-bar" style="width:84%;background:var(--accent-3);">0,84</div></div></div>
+                            <div class="diff-row"><span class="diff-name">Задание 3</span><div class="diff-track"><div class="diff-bar" style="width:85%;background:var(--accent-3);">0,85</div></div></div>
+                            <div class="diff-row"><span class="diff-name">Задание 4</span><div class="diff-track"><div class="diff-bar" style="width:84%;background:var(--accent-3);">0,84</div></div></div>
+                            <p class="chart-caption">Чем длиннее полоса, тем больше доля верных ответов и тем <em>легче</em> задание.</p>
+
+                            <h4>Выводы об уровне сложности</h4>
+                            <ul>
+                                <li>Распределение <strong>смещено вправо</strong> (медиана 81,5 выше среднего 77,9): большинство результатов высокие — 84% попали в интервал 70–100. Тест в целом оказался скорее лёгким.</li>
+                                <li>Есть выраженная группа низких результатов <strong>(0–49 — 12%)</strong>. Это «хвост» из-за <strong>Задания 1</strong>, которое заметно труднее остальных.</li>
+                                <li><strong>Задание 1</strong> (индекс 0,62) — оптимальной трудности: оно лучше всего различает сильных и слабых учащихся.</li>
+                                <li><strong>Задания 2–4</strong> (индекс 0,84–0,85) — <strong>слишком лёгкие</strong>: их решают почти все, поэтому они слабо дифференцируют.</li>
+                            </ul>
+                            <div class="callout success"><p><strong>Рекомендация:</strong> сохранить Задание 1, а задания 2–4 усложнить или добавить более правдоподобные дистракторы, чтобы выровнять трудность теста и повысить его различающую способность. Оптимальный индекс лёгкости — в диапазоне 0,4–0,7.</p></div>
+                        </div>

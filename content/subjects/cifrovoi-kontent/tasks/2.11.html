@@ -1,0 +1,119 @@
+<div class="subtask-tabs">
+                            <button class="subtask-tab active"><span class="tab-num">№1</span>Тренировочные задания</button>
+                            <button class="subtask-tab"><span class="tab-num">№2</span>Реализация в сервисах</button>
+                            <button class="subtask-tab"><span class="tab-num">№3</span>Самостоятельная работа</button>
+                        </div>
+
+                        <!-- 2.11.1 -->
+                        <div class="subtask-panel active" id="t211-p1">
+                            <h3>Задание 1. Тренировочные задания по теме «Циклы»</h3>
+                            <p>Разработаны четыре тренировочных задания разных типов. Ответы скрыты под спойлером для самопроверки.</p>
+
+                            <div class="practice-task">
+                                <div class="pt-meta">№1 · Установление соответствия</div>
+                                <h5>Соедини термин с его определением</h5>
+                                <ul>
+                                    <li>1. Цикл &nbsp; &nbsp; А. один повтор тела цикла</li>
+                                    <li>2. Тело цикла &nbsp; &nbsp; Б. команда, повторяющая действия несколько раз</li>
+                                    <li>3. Итерация &nbsp; &nbsp; В. число повторений в цикле со счётчиком</li>
+                                    <li>4. Счётчик &nbsp; &nbsp; Г. действия, которые повторяются</li>
+                                </ul>
+                                <details class="answer"><summary>Показать ответ</summary><div class="answer-body">1 — Б, 2 — Г, 3 — А, 4 — В.</div></details>
+                            </div>
+
+                            <div class="practice-task">
+                                <div class="pt-meta">№2 · Решение задачи · ввод ответа</div>
+                                <h5>Сколько всего шагов вперёд сделает робот?</h5>
+                                <div class="code-block" style="background:var(--bg-glass);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;font-family:monospace;font-size:13.5px;margin:.4rem 0;">повторить 5 раз:<br>&nbsp;&nbsp;&nbsp;&nbsp;шаг вперёд<br>&nbsp;&nbsp;&nbsp;&nbsp;шаг вперёд</div>
+                                <p style="font-size:13px;color:var(--text-muted);">Введите число.</p>
+                                <details class="answer"><summary>Показать ответ</summary><div class="answer-body"><strong>10.</strong> В теле цикла две команды «шаг вперёд», цикл повторяется 5 раз: 5 × 2 = 10.</div></details>
+                            </div>
+
+                            <div class="practice-task">
+                                <div class="pt-meta">№3 · Установление последовательности</div>
+                                <h5>Расставь шаги выполнения цикла с условием по порядку</h5>
+                                <ul>
+                                    <li>☐ выполнить тело цикла</li>
+                                    <li>☐ проверить условие</li>
+                                    <li>☐ если условие ложно — выйти из цикла</li>
+                                    <li>☐ если условие истинно — вернуться к проверке</li>
+                                </ul>
+                                <details class="answer"><summary>Показать ответ</summary><div class="answer-body">1) проверить условие → 2) если истинно — выполнить тело цикла → 3) вернуться к проверке → 4) если ложно — выйти из цикла.</div></details>
+                            </div>
+
+                            <div class="practice-task">
+                                <div class="pt-meta">№4 · Поиск ошибки · выбор ответа</div>
+                                <h5>Робот должен нарисовать квадрат, но фигура не замыкается. Где ошибка?</h5>
+                                <div class="code-block" style="background:var(--bg-glass);border:1px solid var(--border);border-radius:10px;padding:.7rem .9rem;font-family:monospace;font-size:13.5px;margin:.4rem 0;">повторить 3 раза:<br>&nbsp;&nbsp;&nbsp;&nbsp;вперёд<br>&nbsp;&nbsp;&nbsp;&nbsp;поворот направо на 90°</div>
+                                <ul>
+                                    <li>А. неверный угол поворота</li>
+                                    <li>Б. цикл нужно повторить 4 раза, а не 3</li>
+                                    <li>В. команды стоят в неправильном порядке</li>
+                                    <li>Г. ошибки нет</li>
+                                </ul>
+                                <details class="answer"><summary>Показать ответ</summary><div class="answer-body"><strong>Б.</strong> У квадрата четыре стороны, поэтому тело цикла нужно повторить 4 раза. Это типичная «ошибка на единицу».</div></details>
+                            </div>
+                        </div>
+
+                        <!-- 2.11.2 -->
+                        <div class="subtask-panel" id="t211-p2">
+                            <h3>Задание 2. Реализация заданий в интерактивных сервисах</h3>
+                            <p>Задания распределены по сервисам с учётом их сильных сторон (см. анализ в 2.10):</p>
+                            <div class="table-wrapper">
+                                <table class="styled-table">
+                                    <thead><tr><th>Задание</th><th style="width:24%;">Сервис</th><th>Шаблон</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>№1 Соответствие терминов</td><td>LearningApps</td><td>«Найди пару» / «Классификация»</td></tr>
+                                        <tr><td>№2 Подсчёт шагов</td><td>Удоба (H5P)</td><td>«Заполни пропуск» / ввод ответа</td></tr>
+                                        <tr><td>№3 Последовательность шагов</td><td>LearningApps</td><td>«Расставь по порядку»</td></tr>
+                                        <tr><td>№4 Поиск ошибки</td><td>WordWall</td><td>«Викторина» / «Найди верный ответ»</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <p style="margin-bottom:.6rem;"><span class="media-ready"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Все 4 задания созданы и встроены</span></p>
+
+                            <div class="embed-card">
+                                <div class="embed-card-head">
+                                    <div class="embed-card-title">Задание №1. Соответствие терминов <span class="ec-badge">LearningApps</span></div>
+                                    <a class="embed-open" href="https://learningapps.org/watch?v=piopnzfhc26" target="_blank" rel="noopener">Открыть ↗</a>
+                                </div>
+                                <iframe class="embed-frame" src="https://learningapps.org/watch?v=piopnzfhc26" style="height:500px" allowfullscreen="" loading="lazy" title="LearningApps: соответствие терминов"></iframe>
+                            </div>
+
+                            <div class="embed-card">
+                                <div class="embed-card-head">
+                                    <div class="embed-card-title">Задание №2. Подсчёт шагов цикла <span class="ec-badge">Удоба · H5P</span></div>
+                                    <a class="embed-open" href="https://udoba.org/node/317513" target="_blank" rel="noopener">Открыть ↗</a>
+                                </div>
+                                <iframe class="embed-frame udoba-h5p" src="https://udoba.org/h5p/embed/317513" style="height:260px" allowfullscreen="" frameborder="0" allow="geolocation *; microphone *; camera *; midi *; encrypted-media *" loading="lazy" title="Удоба: заполните пропущенные слова"></iframe>
+                            </div>
+
+                            <div class="embed-card">
+                                <div class="embed-card-head">
+                                    <div class="embed-card-title">Задание №3. Последовательность шагов <span class="ec-badge">LearningApps</span></div>
+                                    <a class="embed-open" href="https://learningapps.org/watch?v=pcukmhtv526" target="_blank" rel="noopener">Открыть ↗</a>
+                                </div>
+                                <iframe class="embed-frame" src="https://learningapps.org/watch?v=pcukmhtv526" style="height:500px" allowfullscreen="" loading="lazy" title="LearningApps: последовательность шагов"></iframe>
+                            </div>
+
+                            <div class="embed-card">
+                                <div class="embed-card-head">
+                                    <div class="embed-card-title">Задание №4. Поиск ошибки <span class="ec-badge">WordWall</span></div>
+                                    <a class="embed-open" href="https://wordwall.net/ru/resource/114958382" target="_blank" rel="noopener">Открыть ↗</a>
+                                </div>
+                                <iframe class="embed-frame" src="https://wordwall.net/ru/embed/619e4b3641414485a0c8c10c3618680e?themeId=1&amp;templateId=5&amp;fontStackId=0" style="height:400px" allowfullscreen="" loading="lazy" title="WordWall: поиск ошибки"></iframe>
+                            </div>
+
+                            <div class="callout success"><p>Все четыре тренировочных задания реализованы в трёх сервисах (LearningApps, Удоба, WordWall) и встроены прямо в страницу. Содержание и верные ответы соответствуют разработке из подзадания 1.</p></div>
+                        </div>
+
+                        <!-- 2.11.3 -->
+                        <div class="subtask-panel" id="t211-p3">
+                            <h3>Задание 3. Задания для самостоятельной работы</h3>
+                            <p>Самостоятельная работа закрепляет тему и развивает перенос знаний на новые ситуации.</p>
+                            <div class="practice-task"><h5>1. Собери алгоритм с циклом</h5><p>Составь алгоритм, по которому робот нарисует «лесенку» из 5 ступенек, используя цикл со счётчиком. Запиши тело цикла и число повторений.</p></div>
+                            <div class="practice-task"><h5>2. Циклы вокруг нас</h5><p>Найди в повседневной жизни три повторяющихся действия (например, чистка зубов, шаги по лестнице) и запиши каждое в виде «повторить N раз: …».</p></div>
+                            <div class="practice-task"><h5>3. Мини-эксперимент</h5><p>В задании про квадрат измени число повторений с 4 на 3 и на 5. Опиши, какая фигура получится в каждом случае и почему.</p></div>
+                            <div class="practice-task"><h5>4. Вопрос на форум</h5><p>Обсуди в форуме курса: в каких случаях удобнее цикл со счётчиком, а в каких — цикл с условием? Приведи свой пример.</p></div>
+                            <div class="callout info"><p>Задания опираются на дополнительный материал лекции (2.6) и тренажёры (2.11.1), а форумное задание реализует принцип интерактивности из теории 1.2.</p></div>
+                        </div>

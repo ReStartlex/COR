@@ -35,6 +35,13 @@ export function getSubject(slug: string): SubjectMeta | null {
   return readMeta(slug)
 }
 
+/** HTML-тело задания (фрагмент content/subjects/<slug>/tasks/<id>.html) или null. */
+export function getTaskHtml(subjectSlug: string, taskId: string): string | null {
+  const file = path.join(CONTENT_DIR, subjectSlug, 'tasks', `${taskId}.html`)
+  if (!fs.existsSync(file)) return null
+  return fs.readFileSync(file, 'utf-8')
+}
+
 export function getSubjectSlugs(): string[] {
   return getAllSubjects().map((s) => s.slug)
 }

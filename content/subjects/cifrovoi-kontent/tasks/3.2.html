@@ -1,0 +1,123 @@
+<div class="subtask-tabs">
+                            <button class="subtask-tab active"><span class="tab-num">№1</span>Структура курса</button>
+                            <button class="subtask-tab"><span class="tab-num">№2</span>Иерархия</button>
+                            <button class="subtask-tab"><span class="tab-num">№3</span>Схема Z / F</button>
+                            <button class="subtask-tab"><span class="tab-num">№4</span>Вайрфрейм</button>
+                            <button class="subtask-tab"><span class="tab-num">№5</span>Цветовая гамма</button>
+                        </div>
+
+                        <!-- 3.2.1 -->
+                        <div class="subtask-panel active" id="t32-p1">
+                            <h3>Задание 1. Сборка материала и структура курса</h3>
+                            <p>Все материалы, подготовленные за курс, собраны в единый ЦОР. Содержательная часть выстроена с <strong>чередованием теоретических и контролирующих разделов</strong>: после каждого блока теории и практики идёт проверка усвоения.</p>
+                            <div class="module-timeline">
+                                <div class="module-item" data-num="0"><div class="module-title">Метаданные и главная страница</div><div class="module-desc">Титул, автор, краткая и полная аннотация, промовидео, результаты обучения, система оценивания.</div></div>
+                                <div class="module-item" data-num="1"><div class="module-title">Теория → Практика → Контроль (×6 модулей)</div><div class="module-desc">Каждый модуль: видеолекция + лекция + инфографика → тренажёры → мини-тест.</div></div>
+                                <div class="module-item" data-num="2"><div class="module-title">Демо-модуль «Циклы»</div><div class="module-desc">Полностью наполнен: лекция (2.6), инфографика (2.7), видео (2.9), задания (2.11), тест (2.14).</div></div>
+                                <div class="module-item" data-num="3"><div class="module-title">Итоговый контроль</div><div class="module-desc">Итоговый тест (30 вопросов) + мини-проект.</div></div>
+                            </div>
+                            <div class="callout success"><p>Чередование «теория → практика → контроль» соответствует модульному принципу (теория 1.2) и обеспечивает регулярную обратную связь.</p></div>
+                        </div>
+
+                        <!-- 3.2.2 -->
+                        <div class="subtask-panel" id="t32-p2">
+                            <h3>Задание 2. Способ размещения информации: иерархия</h3>
+                            <p>Я сравнил два способа организации (теория 3.1) и выбрал для ЦОР <strong>плоскую иерархию</strong>: для школьников важен быстрый доступ к материалу в 1–2 клика.</p>
+                            <div class="hier">
+                                <div class="hier-col">
+                                    <h5>Плоская иерархия <span style="color:var(--accent-3);">— выбрано</span></h5>
+                                    <div class="hc-note">+ быстрый доступ &nbsp;·&nbsp; − меню крупнее</div>
+                                    <div class="hier-node root">Главная</div>
+                                    <div class="hier-node">Модуль 1. Алгоритм и команда</div>
+                                    <div class="hier-node">Модуль 4. Условия</div>
+                                    <div class="hier-node">Модуль 5. Циклы</div>
+                                    <div class="hier-node">Тест · Мини-проект</div>
+                                </div>
+                                <div class="hier-col">
+                                    <h5>Глубокая иерархия</h5>
+                                    <div class="hc-note">+ точная категоризация &nbsp;·&nbsp; − больше кликов</div>
+                                    <div class="hier-node root">Главная</div>
+                                    <div class="hier-sub">
+                                        <div class="hier-node">Модуль «Циклы»</div>
+                                        <div class="hier-sub">
+                                            <div class="hier-node">Теория</div>
+                                            <div class="hier-node">Практика</div>
+                                            <div class="hier-node">Контроль</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="callout info"><p>В плоской структуре все модули доступны прямо из меню, а внутри модуля материал идёт одной лентой (теория → практика → тест). Это снижает риск «заблудиться» — важно для младшей аудитории.</p></div>
+                        </div>
+
+                        <!-- 3.2.3 -->
+                        <div class="subtask-panel" id="t32-p3">
+                            <h3>Задание 3. Композиционная схема страниц (Z / F)</h3>
+                            <p>Композиция выбирается под тип страницы (теория 3.1):</p>
+                            <div class="hier">
+                                <div class="hier-col">
+                                    <h5>Главная страница — схема Z</h5>
+                                    <div class="hc-note">Мало текста, лендинг-стиль</div>
+                                    <p style="font-size:13px;margin:.3rem 0;">Логотип и заголовок (верх) → промовидео (центр) → описание → кнопка «Начать курс» в правом нижнем углу (call to action — точка завершения буквы Z).</p>
+                                </div>
+                                <div class="hier-col">
+                                    <h5>Страница урока — схема F</h5>
+                                    <div class="hc-note">Много текста, чтение</div>
+                                    <p style="font-size:13px;margin:.3rem 0;">Заголовок и первые абзацы — самые важные; подзаголовки, списки и абзацы начинаются с ключевых слов. Взгляд движется по букве F — сверху вниз вдоль левого края.</p>
+                                </div>
+                            </div>
+                            <div class="callout success"><p>Главная работает как промостраница (Z), а страницы лекций — как текстовые (F): призыв к действию и ключевые слова размещены в точках наибольшего внимания.</p></div>
+                        </div>
+
+                        <!-- 3.2.4 -->
+                        <div class="subtask-panel" id="t32-p4">
+                            <h3>Задание 4. Вайрфрейм (набросок макета)</h3>
+                            <p>Набросок макета двух ключевых страниц. Вайрфрейм определяет порядок информационных блоков до оформления.</p>
+                            <div class="hier">
+                                <div>
+                                    <p style="font-weight:600;font-size:13px;margin:.2rem 0 .4rem;">Главная (схема Z)</p>
+                                    <div class="wireframe">
+                                        <div class="wf-row"><div class="wf-block" style="flex:0 0 70px;">Лого</div><div class="wf-block">Меню модулей</div></div>
+                                        <div class="wf-block" style="padding:1.3rem;">▶ Промовидео</div>
+                                        <div class="wf-block">Краткая аннотация<div class="wf-bar" style="width:80%"></div><div class="wf-bar" style="width:60%"></div></div>
+                                        <div class="wf-block" style="border-color:var(--accent-1);color:var(--accent-1);font-weight:700;">Кнопка «Начать курс»</div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <p style="font-weight:600;font-size:13px;margin:.2rem 0 .4rem;">Страница урока (схема F)</p>
+                                    <div class="wireframe">
+                                        <div class="wf-block">Заголовок темы «Циклы»</div>
+                                        <div class="wf-row"><div class="wf-block" style="flex:0 0 80px;">Оглав-<br>ление</div><div class="wf-block" style="padding:1rem;">▶ Видео + текст лекции<div class="wf-bar" style="width:90%"></div><div class="wf-bar" style="width:75%"></div><div class="wf-bar" style="width:85%"></div></div></div>
+                                        <div class="wf-block">Инфографика</div>
+                                        <div class="wf-block" style="border-color:var(--accent-3);color:var(--accent-3);">Тренажёр → Тест</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <p style="font-size:12.5px;color:var(--text-muted);">Инструменты для чистового макета: Figma, Axure, Framebox. Здесь показан схематичный вайрфрейм.</p>
+                        </div>
+
+                        <!-- 3.2.5 -->
+                        <div class="subtask-panel" id="t32-p5">
+                            <h3>Задание 5. Цветовая гамма</h3>
+                            <p>Я изучил оформление аналогичных ресурсов и выбрал спокойную сине-бирюзовую гамму на светлом фоне с одним акцентом.</p>
+                            <div class="swatches">
+                                <div class="swatch"><div class="swatch-chip" style="background:#3b82f6;"></div>Основной<br>#3b82f6</div>
+                                <div class="swatch"><div class="swatch-chip" style="background:#06b6d4;"></div>Дополнит.<br>#06b6d4</div>
+                                <div class="swatch"><div class="swatch-chip" style="background:#10b981;"></div>Успех<br>#10b981</div>
+                                <div class="swatch"><div class="swatch-chip" style="background:#f59e0b;"></div>Акцент<br>#f59e0b</div>
+                                <div class="swatch"><div class="swatch-chip" style="background:#f4f8fc;"></div>Фон<br>#f4f8fc</div>
+                                <div class="swatch"><div class="swatch-chip" style="background:#0f1f30;"></div>Текст<br>#0f1f30</div>
+                            </div>
+                            <h4>Изученные аналоги и выводы</h4>
+                            <div class="platform-links">
+                                <a href="https://uchi.ru" target="_blank" rel="noopener" class="platform-chip">Учи.ру <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"></path></svg></a>
+                                <a href="https://resh.edu.ru" target="_blank" rel="noopener" class="platform-chip">РЭШ <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"></path></svg></a>
+                                <a href="https://education.yandex.ru" target="_blank" rel="noopener" class="platform-chip">Яндекс Учебник <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"></path></svg></a>
+                            </div>
+                            <ul>
+                                <li><strong>Учи.ру</strong> — яркие дружелюбные цвета, мотивируют школьников, но порой пёстро;</li>
+                                <li><strong>РЭШ</strong> — сдержанный сине-белый стиль, академично и спокойно;</li>
+                                <li><strong>Яндекс Учебник</strong> — светлый фон, тёмный текст, точечные яркие акценты.</li>
+                            </ul>
+                            <div class="callout success"><p><strong>Вывод:</strong> для ЦОР выбран светлый фон, тёмный текст и сине-бирюзовая пара с одним тёплым акцентом. По теории 3.1 двух цветов (основной + дополнительный) достаточно: это даёт чистую визуальную иерархию, не утомляет и при этом остаётся «живым» для школьников. Эта же гамма использована в оформлении данного портфолио.</p></div>
+                        </div>
