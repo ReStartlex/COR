@@ -1,5 +1,4 @@
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
 import type { Metadata } from 'next'
 import { getSubject, getTaskHtml } from '@/lib/content'
 import { getSubjectStatuses, computeProgress } from '@/lib/progress'
@@ -86,12 +85,12 @@ export default async function SubjectPage({
               </a>
             )}
             {meta.hasShowcase && meta.showcaseSlug && (
-              <Link href={`/subjects/${slug}/showcase`} className={s.showcaseCta}>
+              <a href={`/showcase/${meta.showcaseSlug}`} className={s.showcaseCta}>
                 Открыть ЦОР «{meta.showcaseTitle}»
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                   <path d="M7 17L17 7M7 7h10v10" />
                 </svg>
-              </Link>
+              </a>
             )}
           </div>
         </section>
