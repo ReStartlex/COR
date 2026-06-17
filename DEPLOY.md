@@ -1,188 +1,174 @@
 # DEPLOY — публикация на VPS и подключение домена
 
-Сайт **статический** (HTML/CSS/JS). Его не нужно «запускать» как Node-приложение
-и он **не занимает порт** — Nginx просто отдаёт файлы. Поэтому он **не конфликтует**
-с вашими сайтами на `localhost:3000` и `localhost:3001`.
+Проект теперь — **Next.js-приложение** (React + backend API + SQLite через Prisma).
+Оно запускается как **Node-процесс на порту 3002** под управлением **PM2**, а **Nginx**
+работает как reverse-proxy и отдаёт HTTPS. Порт 3002 не конфликтует с вашими сайтами на
+`localhost:3000` и `localhost:3001`.
 
 - **Сервер:** `194.87.143.41`
 - **Домен:** `цор.online` → punycode **`xn--n1aeq.online`**
-  (если домен на самом деле `тор.онлайн` → punycode `xn--n1aee.xn--80asehdb` —
-  тогда подставьте его везде вместо `xn--n1aeq.online`).
+- **Требуется на сервере:** Node.js **20+** и PM2 (`npm i -g pm2`).
+
+> Прод живёт в ветке `main` (старая статика) до тех пор, пока вы не задеплоите ветку
+> `lms-platform`. Когда будете готовы — слейте `lms-platform` в `main` (это делает Claude
+> по вашей команде) и деплойте по инструкции ниже.
 
 ---
 
-## 0. Что важно знать про большой видеофайл
+## 0. Большой видеофайл видеолекции
 
-`assets/video/cikly-lecture.mp4` ≈ **114 МБ** — это больше лимита GitHub (100 МБ),
-поэтому он **исключён из Git** (`.gitignore`). Его нужно загрузить на сервер отдельно
-(шаг 3). Остальные файлы спокойно идут через Git.
+`public/assets/video/cikly-lecture.mp4` ≈ **114 МБ** — больше лимита GitHub (100 МБ),
+поэтому исключён из Git. Загрузите его на сервер отдельно (шаг 4). Остальное идёт через Git.
 
 ---
 
-## 1. Загрузка кода на сервер
+## 1. Установка Node.js и PM2 (один раз)
 
-Подключитесь к серверу:
 ```bash
 ssh root@194.87.143.41
+# Node 20 LTS (если ещё не стоит)
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && apt install -y nodejs
+npm i -g pm2
+node -v   # должно быть v20+
 ```
 
-Создайте отдельную папку для сайта (НЕ трогаем папки существующих проектов):
-```bash
-mkdir -p /var/www/cor
-cd /var/www/cor
-```
+---
 
-Залейте проект из вашего репозитория:
+## 2. Загрузка кода
+
 ```bash
+mkdir -p /var/www/cor && cd /var/www/cor
 git clone https://github.com/ReStartlex/COR.git .
+git checkout lms-platform     # ветка с новой платформой (пока не слита в main)
 ```
-> Если репозиторий приватный — настройте deploy key или используйте `https` с токеном.
-
-При обновлениях в будущем: `cd /var/www/cor && git pull`.
+Обновления в будущем: `cd /var/www/cor && git pull`.
 
 ---
 
-## 2. (Локально) Загрузка большого видео по scp
+## 3. Настройка окружения и БД
 
-Видео не в Git, поэтому отправьте его с компьютера напрямую в нужную папку:
+Создайте `.env` (он в `.gitignore`, поэтому его нет в репозитории):
 ```bash
-scp "D:\cifrovoi_content\assets\video\cikly-lecture.mp4" root@194.87.143.41:/var/www/cor/assets/video/cikly-lecture.mp4
-```
-(в Git Bash/PowerShell путь со слэшами тоже подойдёт)
-
-> Альтернатива — Git LFS: `git lfs track "*.mp4"`, тогда видео хранится в репозитории.
-
-Проверьте, что файл на месте:
-```bash
-ls -lh /var/www/cor/assets/video/
+echo 'DATABASE_URL="file:./prod.db"' > /var/www/cor/.env
 ```
 
-Права на чтение для Nginx:
+Установите зависимости, создайте таблицы БД и соберите проект:
 ```bash
-chown -R www-data:www-data /var/www/cor
-find /var/www/cor -type d -exec chmod 755 {} \; && find /var/www/cor -type f -exec chmod 644 {} \;
+cd /var/www/cor
+npm ci                 # установка зависимостей (prisma generate выполнится автоматически)
+npx prisma db push     # создаёт prod.db со схемой (StudentProfile, TaskProgress)
+npm run build          # prisma generate + next build
+```
+
+> `prod.db` (файл SQLite) хранит профиль студента и статусы «прочитано». Он создаётся на
+> сервере и **не перезаписывается** при `git pull` (в Git его нет). Бэкап — просто копия файла.
+
+---
+
+## 4. Загрузка большого видео по scp (локально)
+
+```bash
+scp "D:\cifrovoi_content\public\assets\video\cikly-lecture.mp4" \
+    root@194.87.143.41:/var/www/cor/public/assets/video/cikly-lecture.mp4
+```
+Проверка: `ls -lh /var/www/cor/public/assets/video/`.
+
+---
+
+## 5. Запуск под PM2
+
+```bash
+cd /var/www/cor
+pm2 start npm --name cor -- start      # запускает "next start -p 3002"
+pm2 save                               # сохранить список процессов
+pm2 startup                            # автозапуск после перезагрузки (выполните выданную команду)
+```
+Проверка: `pm2 status` и `curl -I http://127.0.0.1:3002` (должно быть `200 OK`).
+
+При обновлениях:
+```bash
+cd /var/www/cor && git pull && npm ci && npm run build && pm2 restart cor
 ```
 
 ---
 
-## 3. Настройка Nginx (отдельный server-блок, ничего чужого не трогаем)
+## 6. Nginx — reverse-proxy на порт 3002
 
-Создайте конфиг сайта:
 ```bash
 nano /etc/nginx/sites-available/cor
 ```
-
-Вставьте (домен уже в punycode):
 ```nginx
 server {
     listen 80;
     listen [::]:80;
     server_name xn--n1aeq.online www.xn--n1aeq.online;
 
-    root /var/www/cor;
-    index index.html;
+    client_max_body_size 200m;   # для крупного видео
 
-    # человекочитаемые URL и аккуратная 404
     location / {
-        try_files $uri $uri/ =404;
+        proxy_pass http://127.0.0.1:3002;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
     }
-    error_page 404 /404.html;
-
-    # кэширование статики (картинки, видео, css, js)
-    location ~* \.(?:css|js|png|jpg|jpeg|svg|webp|ico|woff2?)$ {
-        expires 30d;
-        add_header Cache-Control "public, immutable";
-    }
-    location ~* \.(?:mp4|pdf)$ {
-        expires 7d;
-        add_header Cache-Control "public";
-        add_header Accept-Ranges bytes;   # перемотка видео
-    }
-
-    # сжатие
-    gzip on;
-    gzip_types text/css application/javascript image/svg+xml application/xml text/plain;
-    gzip_min_length 1024;
 
     access_log /var/log/nginx/cor.access.log;
     error_log  /var/log/nginx/cor.error.log;
 }
 ```
-
-Включите сайт и проверьте конфигурацию:
 ```bash
 ln -s /etc/nginx/sites-available/cor /etc/nginx/sites-enabled/cor
-nginx -t          # должно быть "syntax is ok" / "test is successful"
-systemctl reload nginx
+nginx -t && systemctl reload nginx
 ```
-> `nginx -t` проверяет ВСЕ конфиги — если он «ok», ваши существующие сайты не задеты.
+> `nginx -t` проверяет ВСЕ конфиги — если «ok», существующие сайты не задеты.
+> Next.js сам кэширует и сжимает статику из `public/` и `/_next/static`.
 
 ---
 
-## 4. DNS на Reg.ru
+## 7. DNS на Reg.ru
 
-В панели Reg.ru для домена `цор.online` укажите A-записи на IP сервера:
+| Тип | Имя | Значение |
+|-----|-----|----------|
+| A   | `@`   | `194.87.143.41` |
+| A   | `www` | `194.87.143.41` |
 
-| Тип | Имя (host) | Значение |
-|-----|------------|----------|
-| A   | `@`        | `194.87.143.41` |
-| A   | `www`      | `194.87.143.41` |
-
-Сохраните. Обновление DNS обычно занимает от 10 минут до нескольких часов.
-
-Проверка (когда применится):
-```bash
-ping xn--n1aeq.online
-```
+Проверка после применения: `ping xn--n1aeq.online`.
 
 ---
 
-## 5. HTTPS (бесплатный сертификат Let's Encrypt)
+## 8. HTTPS (Let's Encrypt)
 
-Когда домен начал указывать на сервер:
 ```bash
 apt update && apt install -y certbot python3-certbot-nginx
 certbot --nginx -d xn--n1aeq.online -d www.xn--n1aeq.online
 ```
-Certbot сам добавит HTTPS-блок и редирект с http на https. Автопродление:
-```bash
-systemctl status certbot.timer     # обычно уже активен
-```
+Certbot добавит HTTPS-блок и редирект http→https. Автопродление: `systemctl status certbot.timer`.
 
 ---
 
-## 6. Проверка
+## 9. Проверка
 
-Откройте в браузере:
-- `https://цор.online/` — портфолио;
-- `https://цор.online/course.html` — сам курс (ЦОР).
+- `https://цор.online/` — главная: профиль + список предметов;
+- `https://цор.online/subjects/cifrovoi-kontent` — курс с заданиями;
+- `https://цор.online/subjects/proektirovanie-obrazovatelnyh-sistem` — проектная работа с интерактивом;
+- `https://цор.online/showcase/igrovye-osnovy` — премиум-витрина ЦОР (3D, тест).
 
-Проверьте: видео играет, инфографика и фото видны, вкладки и тест работают,
-интерактивные тренажёры (LearningApps/Удоба/WordWall) загружаются.
-
----
-
-## Если домен другой / меняете адрес
-
-Замените `xn--n1aeq.online` на ваш домен в трёх местах:
-1. `server_name` в `/etc/nginx/sites-available/cor`;
-2. `robots.txt` и `sitemap.xml` (строки с `loc`/`Sitemap`);
-3. мета-теги `og:url`, `canonical`, `og:image`, `twitter:image` в `index.html` и `course.html`.
-
-Быстрая замена во всех файлах локально (Git Bash):
-```bash
-grep -rl 'xn--n1aeq.online' . --include='*.html' --include='*.xml' --include='*.txt' \
-  | xargs sed -i 's/xn--n1aeq\.online/ВАШ_ПУНИКОД/g'
-```
+Проверьте: переключение темы, раскрытие заданий, отметка «прочитано» (сохраняется после
+перезагрузки — значит backend и БД работают), видео, тренажёры.
 
 ---
 
 ## Частые вопросы
 
-- **Конфликт с сайтами на 3000/3001?** Нет. Статика отдаётся Nginx напрямую,
-  без своего порта. Это просто ещё один `server`-блок по своему `server_name`.
-- **Нужен ли `npm run build`?** Нет. Для продакшена достаточно файлов из репозитория.
-  Vite — только для локальной разработки (порт 3002, тоже свободный).
-- **Видео не играет / 404 на видео.** Значит не загрузили `cikly-lecture.mp4` (шаг 2)
-  или нет прав на чтение (`chown`/`chmod`).
-- **IDN-домен в certbot.** Используйте именно punycode (`xn--...`), а не кириллицу.
+- **Конфликт с сайтами на 3000/3001?** Нет. Приложение слушает 3002, Nginx проксирует по
+  своему `server_name`.
+- **Нужен ли `npm run build`?** Да — это Node-приложение (SSR + API). Без сборки не запустится.
+- **Прогресс «прочитано» сбросился после обновления?** Не должен: `prod.db` не в Git. Если
+  пересоздавали БД — сделайте бэкап `prod.db` перед экспериментами.
+- **Видео 404.** Не загрузили `cikly-lecture.mp4` (шаг 4) в `public/assets/video/`.
+- **Старая статика.** Лежит в ветке `main` и в `_legacy/` — как референс. Новый сайт её не использует.
