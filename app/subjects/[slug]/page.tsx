@@ -249,6 +249,9 @@ export default async function SubjectPage({
         <footer className="footer">
           <p className="footer-brand">{meta.title}</p>
           <p>Савчишен Алексей Алексеевич · {meta.term}</p>
+          <p style={{ marginTop: '0.4rem', fontSize: '12px' }}>
+            ЦОР — Цифровой образовательный ресурс
+          </p>
         </footer>
       </main>
 

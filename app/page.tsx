@@ -110,9 +110,12 @@ export default async function HomePage() {
         </section>
 
         <footer className="footer">
-          <p className="footer-brand">ЦОР — образовательная платформа</p>
+          <p className="footer-brand">ЦОР — Цифровой образовательный ресурс</p>
           <p>
             {profile.fullName} · {profile.university} · группа {profile.group}
+          </p>
+          <p style={{ marginTop: '0.4rem', fontSize: '12px' }}>
+            Персональное образовательное портфолио · {new Date().getFullYear()}
           </p>
         </footer>
       </main>
