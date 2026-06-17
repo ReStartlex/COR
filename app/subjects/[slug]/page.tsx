@@ -15,6 +15,7 @@ import SystemMap from '@/components/course/SystemMap'
 import ThemeCards from '@/components/course/ThemeCards'
 import ProjectTimeline from '@/components/course/ProjectTimeline'
 import TaskComponent from '@/components/course/interactive/TaskComponent'
+import { SubjectIcon } from '@/components/icons'
 import s from '@/components/course/course.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -29,8 +30,6 @@ export async function generateMetadata({
   if (!meta) return { title: 'Предмет не найден' }
   return { title: meta.title, description: meta.description }
 }
-
-const THEME_ICONS = ['📚', '🛠️', '🧩', '🎯', '⭐']
 
 function plural(n: number, one: string, few: string, many: string): string {
   const m10 = n % 10
@@ -76,6 +75,7 @@ export default async function SubjectPage({
             <span className="dot" />
             {meta.term}
           </div>
+          <SubjectIcon type={meta.iconType} size={34} className={s.heroSubjectIcon} />
           <h1>{meta.title}</h1>
           <p className="hero-subtitle">{meta.description}</p>
           {studentCompleted && (
@@ -173,7 +173,9 @@ export default async function SubjectPage({
           <section className="section" id={theme.id} key={theme.id}>
             <div className="theme-divider">
               <div className="theme-divider-inner">
-                <div className={`theme-divider-icon t${(ti % 2) + 1}`}>{THEME_ICONS[ti] ?? '📘'}</div>
+                <div className={`theme-divider-icon t${(ti % 2) + 1}`} style={{ fontWeight: 800, fontFamily: 'var(--font-display)' }}>
+                  {ti + 1}
+                </div>
                 <div className="theme-divider-text">
                   <h3>
                     Тема {ti + 1}. {theme.title}
@@ -191,6 +193,7 @@ export default async function SubjectPage({
                     key={task.id}
                     id={task.id}
                     numLabel={task.numLabel}
+                    icon={task.icon}
                     anchor={taskAnchor(task.id)}
                     title={task.title}
                     kind={task.kind}
@@ -219,6 +222,7 @@ export default async function SubjectPage({
                   key={task.id}
                   id={task.id}
                   numLabel={task.numLabel}
+                  icon={task.icon}
                   anchor={taskAnchor(task.id)}
                   title={task.title}
                   kind={task.kind}

@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import ThemeScript from '@/components/layout/ThemeScript'
 import AmbientBackground from '@/components/layout/AmbientBackground'
+import BackToTop from '@/components/layout/BackToTop'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://xn--n1aeq.online'),
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <AmbientBackground />
         {children}
+        <BackToTop />
       </body>
     </html>
   )

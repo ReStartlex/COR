@@ -8,6 +8,8 @@ export interface TaskMeta {
   id: string
   /** Что показать в бейдже-номере, если отличается от id (напр. эмодзи). */
   numLabel?: string
+  /** Имя lucide-иконки для бейджа задания (вместо номера). */
+  icon?: string
   title: string
   /** Тип работы: Лекция, Практическая, Самостоятельная и т.п. — для бейджа. */
   kind?: string
@@ -56,8 +58,10 @@ export interface SubjectMeta {
   studentStatus?: 'completed' | 'in_progress'
   /** Акцентный токен: '1' | '2' | '3' | '4' (см. --accent-*). */
   accent?: '1' | '2' | '3' | '4'
-  /** Эмодзи/иконка предмета. */
+  /** Эмодзи/иконка предмета (легаси). */
   icon?: string
+  /** Тип для осмысленной lucide-иконки дисциплины. */
+  iconType?: 'digital-content' | 'educational-systems' | 'default'
   /** Есть ли премиум-витрина ЦОР (course showcase). */
   hasShowcase?: boolean
   showcaseSlug?: string

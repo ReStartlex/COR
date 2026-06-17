@@ -1,6 +1,10 @@
 import type { TaskMeta } from '@/lib/types'
 import { taskAnchor } from '@/lib/anchor'
+import { Icon } from '@/components/icons'
 import s from './course.module.css'
+
+// Осмысленные lucide-иконки этапов педагогического дизайна.
+const STAGE_ICONS = ['target', 'search', 'lightbulb', 'clipboard', 'pen', 'chart']
 
 // Визуальная лента этапов проектирования: Тема → Анализ → … → Оценка.
 // Каждый этап — карточка с иконкой, статусом и кратким результатом.
@@ -18,7 +22,9 @@ export default function ProjectTimeline({
       {tasks.map((t, i) => (
         <a href={`#${taskAnchor(t.id)}`} className={s.tlCard} key={t.id}>
           <div className={s.tlConnector} aria-hidden="true" />
-          <div className={s.tlIcon}>{t.numLabel ?? i + 1}</div>
+          <div className={s.tlIcon}>
+            <Icon name={STAGE_ICONS[i] ?? 'book'} size={20} />
+          </div>
           <div className={s.tlStep}>Этап {i + 1}</div>
           <div className={s.tlName}>{SHORT[i] ?? t.title}</div>
           {completed && (

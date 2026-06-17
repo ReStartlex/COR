@@ -1,0 +1,35 @@
+/* Иконки дисциплин: градиент-карты со своей ассоциацией на каждый тип. */
+.subjectIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  flex-shrink: 0;
+  box-shadow: 0 8px 22px -8px var(--si-glow, rgba(79, 140, 255, 0.55));
+}
+
+/* Цифровой контент — голубо-фиолетовый */
+.gradDigital {
+  background: linear-gradient(135deg, #4f8cff, #a78bfa);
+  --si-glow: rgba(124, 110, 250, 0.5);
+}
+/* Образовательные системы — бирюзово-синий */
+.gradSystems {
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  --si-glow: rgba(34, 211, 238, 0.45);
+}
+/* По умолчанию — сине-бирюзовый */
+.gradDefault {
+  background: linear-gradient(135deg, #4f8cff, #22d3ee);
+  --si-glow: rgba(79, 140, 255, 0.5);
+}
+
+@media (max-width: 480px) {
+  .subjectIcon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+  }
+}

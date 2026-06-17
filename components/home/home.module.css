@@ -62,9 +62,14 @@
 /* ===== Сетка предметов ===== */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 1.25rem;
   margin-top: 0.5rem;
+}
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }
 .card {
   display: flex;
@@ -84,14 +89,19 @@
   content: '';
   position: absolute;
   inset: 0 0 auto 0;
-  height: 3px;
-  background: var(--accent-gradient);
-  opacity: 0.9;
+  height: 4px;
+  background: linear-gradient(90deg, var(--tc, var(--accent-1)), var(--accent-2));
+  transition: height 0.3s ease, opacity 0.3s ease;
+  opacity: 0.85;
 }
 .card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
   border-color: var(--border-hover);
   box-shadow: var(--shadow-lg);
+}
+.card:hover::before {
+  height: 6px;
+  opacity: 1;
 }
 .cardHead {
   display: flex;
@@ -123,6 +133,7 @@
   line-height: 1.3;
   margin: 0 0 0.5rem;
   color: var(--text-primary);
+  overflow-wrap: anywhere;
 }
 .cardDesc {
   font-size: 13.5px;
@@ -130,6 +141,17 @@
   line-height: 1.6;
   margin: 0 0 1.25rem;
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .cardDesc {
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+  }
 }
 .cardMeta {
   display: flex;
@@ -170,14 +192,15 @@
 .progressFill {
   height: 100%;
   border-radius: 100px;
-  background: var(--accent-gradient);
-  transition: width 0.5s ease;
+  background: linear-gradient(90deg, var(--tc, var(--accent-1)), var(--accent-2));
+  box-shadow: 0 0 8px -1px var(--tc, var(--accent-1));
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .progressPct {
   font-size: 12px;
   font-weight: 700;
   font-family: 'JetBrains Mono', monospace;
-  color: var(--accent-1);
+  color: var(--tc, var(--accent-1));
   min-width: 38px;
   text-align: right;
 }

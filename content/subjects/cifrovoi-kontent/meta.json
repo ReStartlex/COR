@@ -6,7 +6,7 @@
   "term": "Магистратура · 1 курс · 2025/2026",
   "studentStatus": "completed",
   "accent": "1",
-  "icon": "🎮",
+  "iconType": "digital-content",
   "hasShowcase": true,
   "showcaseSlug": "igrovye-osnovy",
   "showcaseTitle": "Игровые основы программирования",
