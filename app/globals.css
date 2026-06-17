@@ -1721,6 +1721,17 @@
 /* чуть «дороже» дефолтные тени крупных блоков */
 .project-card { box-shadow: var(--shadow-md); }
 
+/* ===== Reveal-on-scroll (управляется RevealManager; контент не прячется без JS) ===== */
+[data-revealing] {
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.cor-pre { opacity: 0; transform: translateY(28px); }
+@media (prefers-reduced-motion: reduce) {
+    [data-revealing] { transition: none; }
+    .cor-pre { opacity: 1; transform: none; }
+}
+
 /* ===== MARKDOWN-КОНТЕНТ (предметы из .md): таблицы, цитаты, заголовки ===== */
 .content h2 {
     font-family: var(--font-display);

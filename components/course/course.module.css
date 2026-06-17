@@ -65,6 +65,33 @@
    ПОЛИРОВКА ПРЕДМЕТОВ: карточки тем, лента этапов, интерактив, dashboard
    ==================================================================== */
 
+/* Кнопка «развернуть/свернуть все» */
+.expandAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 1rem;
+  padding: 8px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  background: var(--toggle-bg);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+}
+.expandAll:hover {
+  background: rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.3);
+  color: var(--accent-1);
+}
+.expandAll svg {
+  width: 15px;
+  height: 15px;
+}
+
 /* Иконка дисциплины в hero курса */
 .heroSubjectIcon {
   margin-bottom: 1.1rem;

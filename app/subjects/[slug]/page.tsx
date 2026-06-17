@@ -16,6 +16,7 @@ import ThemeCards from '@/components/course/ThemeCards'
 import ProjectTimeline from '@/components/course/ProjectTimeline'
 import TaskComponent from '@/components/course/interactive/TaskComponent'
 import { SubjectIcon } from '@/components/icons'
+import ExpandAllToggle from '@/components/course/ExpandAllToggle'
 import s from '@/components/course/course.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -166,6 +167,7 @@ export default async function SubjectPage({
             </h2>
           </div>
           <ThemeCards themes={meta.themes} />
+          <ExpandAllToggle />
         </section>
 
         {/* ===== Темы с заданиями ===== */}

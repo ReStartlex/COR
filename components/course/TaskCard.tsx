@@ -51,6 +51,13 @@ export default function TaskCard({
   const subtasks = html ? countSubtasks(html) : 0
   const minutes = html ? readMinutes(html) : 0
 
+  // Реакция на «развернуть/свернуть все» (глобальное событие).
+  useEffect(() => {
+    const onAll = (e: Event) => setOpen((e as CustomEvent<boolean>).detail)
+    window.addEventListener('cor:setAllOpen', onAll as EventListener)
+    return () => window.removeEventListener('cor:setAllOpen', onAll as EventListener)
+  }, [])
+
   // Авто-отметка «прочитано», когда преподаватель долистал открытую карточку до конца.
   useEffect(() => {
     if (!open || read) return
