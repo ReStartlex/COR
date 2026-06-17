@@ -10,7 +10,11 @@ import Toast from '@/components/course/Toast'
 import ReadingProvider from '@/components/course/ReadingProvider'
 import { ReadCount, ReadPercent } from '@/components/course/ReadingStats'
 import FinalResult from '@/components/course/FinalResult'
-import { ProjectPassport, SystemMap } from '@/components/course/ProjectPassport'
+import { ProjectPassport } from '@/components/course/ProjectPassport'
+import SystemMap from '@/components/course/SystemMap'
+import ThemeCards from '@/components/course/ThemeCards'
+import ProjectTimeline from '@/components/course/ProjectTimeline'
+import TaskComponent from '@/components/course/interactive/TaskComponent'
 import s from '@/components/course/course.module.css'
 
 export const dynamic = 'force-dynamic'
@@ -27,6 +31,16 @@ export async function generateMetadata({
 }
 
 const THEME_ICONS = ['📚', '🛠️', '🧩', '🎯', '⭐']
+
+function plural(n: number, one: string, few: string, many: string): string {
+  const m10 = n % 10
+  const m100 = n % 100
+  if (m10 === 1 && m100 !== 11) return `${n} ${one}`
+  if (m10 >= 2 && m10 <= 4 && (m100 < 10 || m100 >= 20)) return `${n} ${few}`
+  return `${n} ${many}`
+}
+const pluralThemes = (n: number) => plural(n, 'тема', 'темы', 'тем')
+const pluralTasks = (n: number) => plural(n, 'задание', 'задания', 'заданий')
 
 export default async function SubjectPage({
   params,
@@ -121,6 +135,17 @@ export default async function SubjectPage({
           </section>
         )}
 
+        {/* ===== Лента этапов проектирования ===== */}
+        {meta.showTimeline && meta.themes[0] && (
+          <section className="section" id="timeline">
+            <div className="section-header visible">
+              <div className="section-label">Лента проектирования</div>
+              <h2>Этапы педагогического дизайна</h2>
+            </div>
+            <ProjectTimeline tasks={meta.themes[0].tasks} completed={studentCompleted} />
+          </section>
+        )}
+
         {/* ===== Карта образовательной системы ===== */}
         {meta.systemMap && meta.systemMap.length > 0 && (
           <section className="section" id="systemmap">
@@ -132,24 +157,15 @@ export default async function SubjectPage({
           </section>
         )}
 
-        {/* ===== Обзор тем ===== */}
+        {/* ===== Обзор тем (карточки) ===== */}
         <section className="section" id="overview">
           <div className="section-header visible">
             <div className="section-label">Структура курса</div>
             <h2>
-              {meta.themes.length} тем(ы), {progress.total} заданий
+              {pluralThemes(meta.themes.length)}, {pluralTasks(progress.total)}
             </h2>
           </div>
-          <div className="module-timeline">
-            {meta.themes.map((theme, i) => (
-              <div className="module-item" data-num={i + 1} key={theme.id}>
-                <div className="module-title">{theme.title}</div>
-                <div className="module-desc">
-                  {theme.tasks.length} заданий · {theme.tasks.map((t) => t.id).join(', ')}
-                </div>
-              </div>
-            ))}
-          </div>
+          <ThemeCards themes={meta.themes} />
         </section>
 
         {/* ===== Темы с заданиями ===== */}
@@ -168,6 +184,22 @@ export default async function SubjectPage({
             </div>
 
             {theme.tasks.map((task) => {
+              // Интерактивное задание — React-компонент вместо HTML.
+              if (task.component) {
+                return (
+                  <TaskCard
+                    key={task.id}
+                    id={task.id}
+                    numLabel={task.numLabel}
+                    anchor={taskAnchor(task.id)}
+                    title={task.title}
+                    kind={task.kind}
+                    desc={task.desc}
+                  >
+                    <TaskComponent name={task.component} />
+                  </TaskCard>
+                )
+              }
               const html = bodies[task.id]
               if (!html) {
                 return (

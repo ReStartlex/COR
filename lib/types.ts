@@ -13,6 +13,10 @@ export interface TaskMeta {
   kind?: string
   /** Короткое описание для списков. */
   desc?: string
+  /** Имя интерактивного React-компонента вместо HTML-фрагмента (см. task-components). */
+  component?: string
+  /** Краткий результат этапа (для ленты этапов). */
+  result?: string
 }
 
 /** Строка паспорта проектной работы. */
@@ -26,6 +30,8 @@ export interface SystemMapItem {
   icon: string
   label: string
   value: string
+  /** Пояснение, раскрывается по клику. */
+  detail?: string
 }
 
 export interface ThemeMeta {
@@ -33,6 +39,8 @@ export interface ThemeMeta {
   title: string
   /** Короткий заголовок темы для сайдбара. */
   short?: string
+  /** Описание темы для карточки. */
+  description?: string
   tasks: TaskMeta[]
 }
 
@@ -60,6 +68,8 @@ export interface SubjectMeta {
   passport?: PassportRow[]
   /** Карта образовательной системы (карточки). */
   systemMap?: SystemMapItem[]
+  /** Показывать визуальную ленту этапов (по задачам первой темы). */
+  showTimeline?: boolean
   themes: ThemeMeta[]
 }
 

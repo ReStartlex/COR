@@ -1,7 +1,7 @@
-import type { PassportRow, SystemMapItem } from '@/lib/types'
+import type { PassportRow } from '@/lib/types'
 import s from './course.module.css'
 
-// Паспорт проектной работы + карта образовательной системы (для проектных предметов).
+// Паспорт проектной работы (для проектных предметов).
 export function ProjectPassport({ rows }: { rows: PassportRow[] }) {
   return (
     <div className={s.passport}>
@@ -17,20 +17,6 @@ export function ProjectPassport({ rows }: { rows: PassportRow[] }) {
           </div>
         ))}
       </dl>
-    </div>
-  )
-}
-
-export function SystemMap({ items }: { items: SystemMapItem[] }) {
-  return (
-    <div className={s.sysmap}>
-      {items.map((it) => (
-        <div className={s.sysmapCard} key={it.label}>
-          <div className={s.sysmapIcon}>{it.icon}</div>
-          <div className={s.sysmapLabel}>{it.label}</div>
-          <div className={s.sysmapValue}>{it.value}</div>
-        </div>
-      ))}
     </div>
   )
 }

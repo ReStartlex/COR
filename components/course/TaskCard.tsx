@@ -12,7 +12,10 @@ export interface TaskCardProps {
   title: string
   kind?: string
   desc?: string
-  html: string
+  /** HTML-фрагмент тела (для текстовых заданий). */
+  html?: string
+  /** Интерактивный React-компонент тела (вместо html). */
+  children?: React.ReactNode
   defaultOpen?: boolean
 }
 
@@ -35,14 +38,15 @@ export default function TaskCard({
   kind,
   desc,
   html,
+  children,
   defaultOpen = false,
 }: TaskCardProps) {
   const [open, setOpen] = useState(defaultOpen)
   const { isRead, setRead, toggle } = useReading()
   const read = isRead(id)
   const sentinelRef = useRef<HTMLDivElement>(null)
-  const subtasks = countSubtasks(html)
-  const minutes = readMinutes(html)
+  const subtasks = html ? countSubtasks(html) : 0
+  const minutes = html ? readMinutes(html) : 0
 
   // Авто-отметка «прочитано», когда преподаватель долистал открытую карточку до конца.
   useEffect(() => {
@@ -92,13 +96,15 @@ export default function TaskCard({
             {kind}
             {kind && desc ? ' · ' : ''}
             {desc}
-            <span className="read-time" title={`чтение ≈ ${minutes} мин`}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
-                <circle cx="12" cy="12" r="9" />
-                <polyline points="12 7 12 12 15 14" />
-              </svg>
-              ≈ {minutes} мин
-            </span>
+            {minutes > 0 && (
+              <span className="read-time" title={`чтение ≈ ${minutes} мин`}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round">
+                  <circle cx="12" cy="12" r="9" />
+                  <polyline points="12 7 12 12 15 14" />
+                </svg>
+                ≈ {minutes} мин
+              </span>
+            )}
           </div>
         </div>
 
@@ -133,7 +139,11 @@ export default function TaskCard({
         <div className="task-card-content">
           {open && (
             <>
-              <TaskBody html={html} />
+              {children ? (
+                <div className="task-card-content-inner content">{children}</div>
+              ) : html ? (
+                <TaskBody html={html} />
+              ) : null}
               <div className="task-read-sentinel" ref={sentinelRef} aria-hidden="true" />
             </>
           )}
